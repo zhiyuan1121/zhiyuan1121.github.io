@@ -172,14 +172,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通过<a href="http://www.baidu.com访问本地主机" target="_blank" rel="noopener">www.baidu.com访问本地主机</a></p>
+        <p>通过<a href="https://www.baidu.com/" target="_blank" rel="noopener">www.baidu.com</a>访问本地主机</p>
 <p>在server.xml中配置</p>
 <p>1.Engine标签中添加</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;www.baidu.com&quot;  appBase=&quot;D:\Tomcat9\examples&quot;&gt;</span><br><span class="line">	&lt;Context docBase=&quot;D:\Tomcat9\examples&quot; path=&quot;/&quot; /&gt;</span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
 
 <p>name:虚拟主机名</p>
 <p>appBase:项目路径</p>
-<p>Context中属性常考虚拟路径</p>
+<p>Context中属性常考<a href="https://zhiyuan1121.github.io/2019/06/30/%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84/" target="_blank" rel="noopener">虚拟路径</a></p>
 <p>2.修改Engine中defaultHost属性填写需要的主机名</p>
 <p>3.在“C:\Windows\System32\drivers\etc\hosts”中添加</p>
 <p>127.0.0.1 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
@@ -247,7 +247,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>conf目录下server.xml中配置</p>
+        <p>自定义路径访问指定项目</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>conf目录下server.xml中配置</p>
 <p>host标签中新增一行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context docBase=&quot;d:\study\JspProject&quot; path=&quot;/JspProject&quot;/&gt;</span><br></pre></td></tr></table></figure>
 

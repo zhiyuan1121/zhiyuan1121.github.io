@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>虚拟路径 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="方法一conf目录下server.xml中配置 host标签中新增一行 1&amp;lt;Context docBase=&amp;quot;d:\study\JspProject&amp;quot; path=&amp;quot;/JspProject&amp;quot;/&amp;gt;  docBase:实际路径 path:虚拟路径(浏览器访问的路径) 相对路径相对于父标签中的appBase指向的目录 该方法需重启服务器生效 方法二在co">
+  <meta name="description" content="自定义路径访问指定项目 方法一conf目录下server.xml中配置 host标签中新增一行 1&amp;lt;Context docBase=&amp;quot;d:\study\JspProject&amp;quot; path=&amp;quot;/JspProject&amp;quot;/&amp;gt;  docBase:实际路径 path:虚拟路径(浏览器访问的路径) 相对路径相对于父标签中的appBase指向的目录 该方法需重启">
 <meta property="og:type" content="article">
 <meta property="og:title" content="虚拟路径">
 <meta property="og:url" content="http://yoursite.com/2019/06/30/虚拟路径/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="方法一conf目录下server.xml中配置 host标签中新增一行 1&amp;lt;Context docBase=&amp;quot;d:\study\JspProject&amp;quot; path=&amp;quot;/JspProject&amp;quot;/&amp;gt;  docBase:实际路径 path:虚拟路径(浏览器访问的路径) 相对路径相对于父标签中的appBase指向的目录 该方法需重启服务器生效 方法二在co">
+<meta property="og:description" content="自定义路径访问指定项目 方法一conf目录下server.xml中配置 host标签中新增一行 1&amp;lt;Context docBase=&amp;quot;d:\study\JspProject&amp;quot; path=&amp;quot;/JspProject&amp;quot;/&amp;gt;  docBase:实际路径 path:虚拟路径(浏览器访问的路径) 相对路径相对于父标签中的appBase指向的目录 该方法需重启">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-30T14:47:05.565Z">
+<meta property="og:updated_time" content="2019-06-30T15:14:47.932Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟路径">
-<meta name="twitter:description" content="方法一conf目录下server.xml中配置 host标签中新增一行 1&amp;lt;Context docBase=&amp;quot;d:\study\JspProject&amp;quot; path=&amp;quot;/JspProject&amp;quot;/&amp;gt;  docBase:实际路径 path:虚拟路径(浏览器访问的路径) 相对路径相对于父标签中的appBase指向的目录 该方法需重启服务器生效 方法二在co">
+<meta name="twitter:description" content="自定义路径访问指定项目 方法一conf目录下server.xml中配置 host标签中新增一行 1&amp;lt;Context docBase=&amp;quot;d:\study\JspProject&amp;quot; path=&amp;quot;/JspProject&amp;quot;/&amp;gt;  docBase:实际路径 path:虚拟路径(浏览器访问的路径) 相对路径相对于父标签中的appBase指向的目录 该方法需重启">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -174,7 +174,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>conf目录下server.xml中配置</p>
+        <p>自定义路径访问指定项目</p>
+<h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>conf目录下server.xml中配置</p>
 <p>host标签中新增一行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context docBase=&quot;d:\study\JspProject&quot; path=&quot;/JspProject&quot;/&gt;</span><br></pre></td></tr></table></figure>
 
