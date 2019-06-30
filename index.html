@@ -152,6 +152,302 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-虚拟主机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/30/虚拟主机/">虚拟主机</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/30/虚拟主机/" class="archive-article-date">
+  	<time datetime="2019-06-30T14:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过<a href="http://www.baidu.com访问本地主机" target="_blank" rel="noopener">www.baidu.com访问本地主机</a></p>
+<p>在server.xml中配置</p>
+<p>1.Engine标签中添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;www.baidu.com&quot;  appBase=&quot;D:\Tomcat9\examples&quot;&gt;</span><br><span class="line">	&lt;Context docBase=&quot;D:\Tomcat9\examples&quot; path=&quot;/&quot; /&gt;</span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
+
+<p>name:虚拟主机名</p>
+<p>appBase:项目路径</p>
+<p>Context中属性常考虚拟路径</p>
+<p>2.修改Engine中defaultHost属性填写需要的主机名</p>
+<p>3.在“C:\Windows\System32\drivers\etc\hosts”中添加</p>
+<p>127.0.0.1 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
+<p>4.重启服务器</p>
+<p>ps:浏览器一般会对常用域名做判断，像baidu.com通常会提示风险警告</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/30/虚拟主机/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-虚拟路径" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/30/虚拟路径/">虚拟路径</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/30/虚拟路径/" class="archive-article-date">
+  	<time datetime="2019-06-30T14:11:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>conf目录下server.xml中配置</p>
+<p>host标签中新增一行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context docBase=&quot;d:\study\JspProject&quot; path=&quot;/JspProject&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>docBase:实际路径</p>
+<p>path:虚拟路径(浏览器访问的路径)</p>
+<p>相对路径相对于父标签中的appBase指向的目录</p>
+<p>该方法需重启服务器生效</p>
+<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>在conf\Catalina\localhost中新建“项目名.xml”内容新增一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context docBase=&quot;d:\study\JspProject&quot; path=&quot;/JspProject&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>该方法无需重启服务器</p>
+<p>path填写“/”在访问时可直接访问不需要带“/”</p>
+<p>访问项目默认的文件在 项目/WEB-INF/web.xml中设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">	&lt;welcome-file&gt;index.jsp&lt;/welcome-file&gt;</span><br><span class="line">&lt;welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以存在多个”welcome-file”标签</p>
+<p>从添加的顺序查找直到找到项目中存在的文件作为初始页</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/30/虚拟路径/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-常见状态码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/30/常见状态码/">常见状态码</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/30/常见状态码/" class="archive-article-date">
+  	<time datetime="2019-06-30T14:06:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="200"><a href="#200" class="headerlink" title="200"></a>200</h5><p>​    一切正常</p>
+<h5 id="300-301"><a href="#300-301" class="headerlink" title="300/301"></a>300/301</h5><p>​    页面重定向(跳转)</p>
+<h5 id="404"><a href="#404" class="headerlink" title="404"></a>404</h5><p>​    资源不存在</p>
+<h5 id="403"><a href="#403" class="headerlink" title="403"></a>403</h5><p>​    权限不足（如果文件设置不可见）</p>
+<h5 id="500"><a href="#500" class="headerlink" title="500"></a>500</h5><p>​    服务器内部错误（代码有误）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/30/常见状态码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Tomcat" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/06/30/Tomcat/">Tomcat</a>
+    </h1>
+  
+
+        
+        <a href="/2019/06/30/Tomcat/" class="archive-article-date">
+  	<time datetime="2019-06-30T13:56:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Tomcat安装后有七个目录</p>
+<h5 id="bin"><a href="#bin" class="headerlink" title="bin"></a>bin</h5><p>​            存放可执行文件，常用的有startup.bat(开启服务器)、shutdown.bat(关闭服务器)</p>
+<h5 id="conf"><a href="#conf" class="headerlink" title="conf"></a>conf</h5><p>​            存放配置文件(server.xml)</p>
+<h5 id="lib"><a href="#lib" class="headerlink" title="lib"></a>lib</h5><p>​        存放tomecat依赖的jar包</p>
+<h5 id="log"><a href="#log" class="headerlink" title="log"></a>log</h5><p>​        临时文件</p>
+<h5 id="webapps"><a href="#webapps" class="headerlink" title="webapps"></a>webapps</h5><p>​        存放可执行的项目(开发项目放入该目录)</p>
+<h5 id="work"><a href="#work" class="headerlink" title="work"></a>work</h5><p>​        存放由jsp翻译成的java，以及编译成的class</p>
+<p>conf/server.xml 配置端口</p>
+<pre><code>&lt;Connector port=&quot;8888&quot; protocol=&quot;HTTP/1.1&quot;
+           connectionTimeout=&quot;20000&quot;
+           redirectPort=&quot;8443&quot; /&gt;</code></pre><p>默认为8080，填写80访问时可不带端口号</p>
+<p>配置环境变量名为 CATALINA_HOME</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/06/30/Tomcat/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-第一个贴子" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -235,18 +531,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br><span class="line">$ hexo n <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a> 新建博客</p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a> 启动博客用于本地测试</p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo c</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>清理通常与重新生成连用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a> 重新生成博客</p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a> 部署到服务器</p>
 
       
 
