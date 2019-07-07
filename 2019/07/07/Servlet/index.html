@@ -6,16 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>第一个贴子 | Hexo</title>
+  <title>Servlet | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="第一个贴子">
-<meta property="og:url" content="http://yoursite.com/2019/06/17/第一个贴子/index.html">
+  <meta name="description" content="Servlet（Server Applet），全称Java Servlet，未有中文译文。是用Java编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态Web内容。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。 Servlet运行于支持Java的应用服务器中。从实现上讲，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/Servlet/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Servlet（Server Applet），全称Java Servlet，未有中文译文。是用Java编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态Web内容。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。 Servlet运行于支持Java的应用服务器中。从实现上讲，">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-17T11:46:41.958Z">
+<meta property="og:updated_time" content="2019-07-07T16:17:12.209Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第一个贴子">
+<meta name="twitter:title" content="Servlet">
+<meta name="twitter:description" content="Servlet（Server Applet），全称Java Servlet，未有中文译文。是用Java编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态Web内容。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。 Servlet运行于支持Java的应用服务器中。从实现上讲，">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -151,60 +154,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-第一个贴子" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Servlet" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      第一个贴子
+      Servlet
     </h1>
   
 
         
-        <a href="/2019/06/17/第一个贴子/" class="archive-article-date">
-  	<time datetime="2019-06-17T11:46:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-17</time>
+        <a href="/2019/07/07/Servlet/" class="archive-article-date">
+  	<time datetime="2019-07-07T08:23:05.039Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
+        <p>Servlet（Server Applet），全称Java Servlet，未有中文译文。是用Java编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态Web内容。狭义的Servlet是指Java语言实现的一个接口，广义的Servlet是指任何实现了这个Servlet接口的类，一般情况下，人们将Servlet理解为后者。</p>
+<p>Servlet运行于支持Java的应用服务器中。从实现上讲，Servlet可以响应任何类型的请求，但绝大多数情况下Servlet只用来扩展基于HTTP协议的Web服务器。</p>
+<p>jsp中Servlet用于处理页面请求的java类，常用继承与”HttpServlet“类，介于数据库与页面之间。</p>
+<h5 id="Servlet的生命周期"><a href="#Servlet的生命周期" class="headerlink" title="Servlet的生命周期"></a>Servlet的生命周期</h5><p>Servlet生命周期有五个，用于我们操作的只有三个</p>
+<p>加载：Servlet容器自动处理</p>
+<p>初始化：对应方法，init(),默认在第一次调用的时候执行,可以设置为在Tomcat启动时调用</p>
+<p>服务：常用方法，doPost()、doGet()跟别用于处理get、post请求。</p>
+<p>销毁：对应方法destroy(),初始化之后在关闭Tomcat时调用</p>
+<p>卸载：Servlet容器自动处理</p>
+<h5 id="Servlet的配置"><a href="#Servlet的配置" class="headerlink" title="Servlet的配置"></a>Servlet的配置</h5><p>Servlet写完后需要在web.xml中将其与请求连接起来以及其他配置也需要在web.xml中进行</p>
+<p>配置代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span><span class="comment">&lt;!--  键值对的形式设置共有数据所有Servlet共享 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>globalParam<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span><span class="comment">&lt;!-- 数据的name(key) --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>321<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span><span class="comment">&lt;!-- value --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span><span class="comment">&lt;!-- 构造servlet --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>servlet225<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!-- servlet的name --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>Servletbate.Servlet25<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span><span class="comment">&lt;!-- servlet对应的java类 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 加入该条属性后init()会在tomcat启动是调用，中间的数字表示多个servlet调用的先后顺序 --&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!--  给该servlet添加一个私有的数据，其他servlet不可获取--&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">param-name</span>&gt;</span>321<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">param-value</span>&gt;</span>123<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span><span class="comment">&lt;!-- 将请求与servlet关联 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>servlet225<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span><span class="comment">&lt;!-- 请求指向的servlet的name --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/servlet225<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 拦截的请求路径，在web.xml中路径'/'表示的路径为项目的根路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>请求代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"servlet225"</span>&gt;</span>123<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--在页面中的路径'/'表示服务器的根路径--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Servlet创建代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Servlet25</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//处理get请求，参数为页面的request对象和response对象，自动传递</span></span><br><span class="line">		System.out.println(<span class="string">"service"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doPost</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">//处理post请求，参数为页面的request对象和response对象，自动传递;若两种请求处理的方式一致可相互调用简化代码</span></span><br><span class="line">		doGet(req,resp);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="comment">//初始化时执行</span></span><br><span class="line">        </span><br><span class="line">		System.out.println(<span class="string">"25.init"</span>);</span><br><span class="line">		ServletContext servletcontext= <span class="keyword">super</span>.getServletContext();</span><br><span class="line">        <span class="comment">//获取ServletContext对象</span></span><br><span class="line">		System.out.println(servletcontext.getInitParameter(<span class="string">"globalParam"</span>));</span><br><span class="line">        <span class="comment">//通过ServletContext对象获取共有数据</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line">		System.out.println(<span class="keyword">super</span>.getInitParameter(<span class="string">"321"</span>));</span><br><span class="line">        <span class="comment">//通过父类方法获取私有对象</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//销毁时执行</span></span><br><span class="line">		System.out.println(<span class="string">"25.destroy"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/zfb.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/img/VX.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
+
       
     </div>
     <div class="article-info article-info-index">
@@ -260,7 +251,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/17/第一个贴子/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/07/Servlet/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -274,18 +265,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/06/30/Tomcat/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Tomcat
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/17/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/07/06/数据库存储大文本与文件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据库存储大文本与文件</div>
       <i class="icon-circle-right"></i>
     </a>
   
