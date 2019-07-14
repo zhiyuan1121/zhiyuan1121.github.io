@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Tomcat安装后有七个目录 bin​            存放可执行文件，常用的有startup.bat(开启服务器)、shutdown.bat(关闭服务器) conf​            存放配置文件(server.xml) lib​        存放tomecat依赖的jar包 log​        临时文件 webapps​        存放可执行的项目(开发项目放入该目录)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-30T14:28:29.666Z">
+<meta property="og:updated_time" content="2019-07-08T15:09:54.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tomcat">
 <meta name="twitter:description" content="Tomcat安装后有七个目录 bin​            存放可执行文件，常用的有startup.bat(开启服务器)、shutdown.bat(关闭服务器) conf​            存放配置文件(server.xml) lib​        存放tomecat依赖的jar包 log​        临时文件 webapps​        存放可执行的项目(开发项目放入该目录)">
@@ -186,7 +186,13 @@
            connectionTimeout=&quot;20000&quot;
            redirectPort=&quot;8443&quot; /&gt;</code></pre><p>默认为8080，填写80访问时可不带端口号</p>
 <p>配置环境变量名为 CATALINA_HOME</p>
-
+<p>超链接请求地址中存在中文解决方法</p>
+<p>找到tomcat目录中的conf下的server.xml，然后打开，找到端口的配置的标签位置：</p>
+<p>然后加上URIEncoding=”UTF-8”这个配置，重新启动tomcat即可：</p>
+<pre><code>&lt;Connector port=&quot;18080&quot; protocol=&quot;HTTP/1.1&quot;   
+connectionTimeout=&quot;60000&quot;     
+redirectPort=&quot;8443&quot;
+URIEncoding=&quot;UTF-8&quot;/&gt;  </code></pre>
       
 
       

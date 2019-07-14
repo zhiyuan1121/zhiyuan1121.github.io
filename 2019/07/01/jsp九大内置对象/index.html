@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>jsp九大内置对象 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="内置对象：不需要new就可直接使用的对象 一、out​    输出对象，向客户端（浏览器）输出内容 二、request​    请求对象，存储“客户端向服务器发送的请求信息” ​    信息同一次请求有效 request常用方法1234567891011121314151617181920212223242526272829303132333435363738String getParameter">
+  <meta name="description" content="内置对象：不需要new就可直接使用的对象 一、out​    输出对象，向客户端（浏览器）输出内容 ，获取方法response.getWriter(); 二、request​    请求对象，存储“客户端向服务器发送的请求信息” ​    信息同一次请求有效 request常用方法12345678910111213141516171819202122232425262728293031323334">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jsp九大内置对象">
 <meta property="og:url" content="http://yoursite.com/2019/07/01/jsp九大内置对象/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="内置对象：不需要new就可直接使用的对象 一、out​    输出对象，向客户端（浏览器）输出内容 二、request​    请求对象，存储“客户端向服务器发送的请求信息” ​    信息同一次请求有效 request常用方法1234567891011121314151617181920212223242526272829303132333435363738String getParameter">
+<meta property="og:description" content="内置对象：不需要new就可直接使用的对象 一、out​    输出对象，向客户端（浏览器）输出内容 ，获取方法response.getWriter(); 二、request​    请求对象，存储“客户端向服务器发送的请求信息” ​    信息同一次请求有效 request常用方法12345678910111213141516171819202122232425262728293031323334">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-02T14:03:01.894Z">
+<meta property="og:updated_time" content="2019-07-14T15:35:55.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jsp九大内置对象">
-<meta name="twitter:description" content="内置对象：不需要new就可直接使用的对象 一、out​    输出对象，向客户端（浏览器）输出内容 二、request​    请求对象，存储“客户端向服务器发送的请求信息” ​    信息同一次请求有效 request常用方法1234567891011121314151617181920212223242526272829303132333435363738String getParameter">
+<meta name="twitter:description" content="内置对象：不需要new就可直接使用的对象 一、out​    输出对象，向客户端（浏览器）输出内容 ，获取方法response.getWriter(); 二、request​    请求对象，存储“客户端向服务器发送的请求信息” ​    信息同一次请求有效 request常用方法12345678910111213141516171819202122232425262728293031323334">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -175,7 +175,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>内置对象：不需要new就可直接使用的对象</p>
-<h4 id="一、out"><a href="#一、out" class="headerlink" title="一、out"></a>一、out</h4><p>​    输出对象，向客户端（浏览器）输出内容</p>
+<h4 id="一、out"><a href="#一、out" class="headerlink" title="一、out"></a>一、out</h4><p>​    输出对象，向客户端（浏览器）输出内容 ，获取方法response.getWriter();</p>
 <h4 id="二、request"><a href="#二、request" class="headerlink" title="二、request"></a>二、request</h4><p>​    请求对象，存储“客户端向服务器发送的请求信息”</p>
 <p>​    信息同一次请求有效</p>
 <h5 id="request常用方法"><a href="#request常用方法" class="headerlink" title="request常用方法"></a>request常用方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">String <span class="title">getParameter</span><span class="params">(String name)</span></span>;</span><br><span class="line"><span class="comment">//根据请求字段名key(input标签的name属性)，返回字段值value(input标签的value属性)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">String[] getParameterValues(String name);</span><br><span class="line"><span class="comment">//与getParameter类似返回值为一个字符串数组，如获取多选框使用</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setCharacterEncoding</span><span class="params">(<span class="string">"编码格式uft-8"</span>)</span></span>;</span><br><span class="line"><span class="comment">//getCharacterEncoding()获取请求的编码格式</span></span><br><span class="line"><span class="comment">//设置post请求的编码格式（tomcat7以前默认'iso-8859-1',tomcat8至今默认为'utf-8'）；</span></span><br><span class="line"><span class="comment">//get请求修改编码格式有两种方式</span></span><br><span class="line"><span class="comment">//1.对变量单独修改</span></span><br><span class="line">String beta = request.getParameter(<span class="string">"beta"</span>);</span><br><span class="line">beta = <span class="keyword">new</span> String(beta.getBytes(<span class="string">"iso-8859-1"</span>),<span class="string">"utf-8"</span>)；</span><br><span class="line"><span class="comment">//前者为原本的编码，后者为需要改成的编码</span></span><br><span class="line"><span class="comment">//2.直接修改tomcat的编码：在端口号的标签中加一条属性:URIEncoding="utf-8"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getRequestDispatcher</span><span class="params">(<span class="string">"b.jsp"</span>)</span>.<span class="title">forward</span><span class="params">(request,response)</span></span>;</span><br><span class="line"><span class="comment">//请求转发的发送跳转到b.jsp页面</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">ServletContext <span class="title">getServerContext</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//获取项目的ServletContext对象</span></span><br><span class="line"></span><br><span class="line"><span class="function">string <span class="title">getRemoteAddr</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">//获取客户端的ip地址</span></span></span><br><span class="line"><span class="function">HttpSession <span class="title">getSession</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">//获取请求的Session对象不存在则创建一个</span></span></span><br><span class="line"><span class="function">String  <span class="title">getRequestedSessionId</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">//获取指定的Session ID</span></span></span><br><span class="line"><span class="function">Cookie[] <span class="title">getCookie</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="comment">//获取客户端所有的Cookie</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setAttribute</span><span class="params">(String name,Object value)</span></span></span><br><span class="line"><span class="function"><span class="comment">//设置指定名称的request属性值。会替换之前的值</span></span></span><br><span class="line"><span class="function">Object <span class="title">getAttribute</span><span class="params">(String name)</span></span></span><br><span class="line"><span class="function"><span class="comment">//返回指定名称的request属性值</span></span></span><br></pre></td></tr></table></figure>
@@ -236,7 +236,8 @@
 <td align="center">void</td>
 </tr>
 </tbody></table>
-<h4 id="四、session"><a href="#四、session" class="headerlink" title="四、session"></a>四、session</h4><p>​    会话对象，在客户第一次访问网站的时候，服务器会为每个客户创建一个session对象。每个对象有一个取值唯一的字符串sessionid，同时会给客户端一个Cookie(JSESSIONID,sessionid)。服务器会将后会将这个字符串存储起来，以后其他请求携带这个JSESSIONID，服务器就可以将其从众多请求中区分出来，找到它所对应的用户数据。</p>
+<h4 id="四、session"><a href="#四、session" class="headerlink" title="四、session"></a>四、session</h4><p>​    获取方法: request.getSession();</p>
+<p>​    会话对象，在客户第一次访问网站的时候，服务器会为每个客户创建一个session对象。每个对象有一个取值唯一的字符串sessionid，同时会给客户端一个Cookie(JSESSIONID,sessionid)。服务器会将后会将这个字符串存储起来，以后其他请求携带这个JSESSIONID，服务器就可以将其从众多请求中区分出来，找到它所对应的用户数据。</p>
 <p>​    session对象会在一下情况下失效：</p>
 <p>​        1.客户关闭浏览器。</p>
 <p>​        2.会话超时，用户在规定时间内没有再次访问该网站，则认为超时。默认时间为30min。</p>
@@ -307,7 +308,8 @@
 <td align="center">vvoid</td>
 </tr>
 </tbody></table>
-<h4 id="applicaton"><a href="#applicaton" class="headerlink" title="applicaton"></a>applicaton</h4><p>​    全局对象，存储当前项目信息，所有客户端共用一个applicaton对象</p>
+<h4 id="applicaton"><a href="#applicaton" class="headerlink" title="applicaton"></a>applicaton</h4><p>​    获取方法：request.getServletContext();</p>
+<p>​    全局对象，存储当前项目信息，所有客户端共用一个applicaton对象</p>
 <p>​    applicaton对象常用方法</p>
 <p>​    信息整个项目运行期间都有效</p>
 <table>
@@ -349,7 +351,7 @@
 <td align="center">String</td>
 </tr>
 </tbody></table>
-<h4 id="pageContext"><a href="#pageContext" class="headerlink" title="pageContext"></a>pageContext</h4><p>​    JSP页面容器，使用setAttribute()添加的属性，当前页面有效</p>
+<h4 id="pageContext"><a href="#pageContext" class="headerlink" title="pageContext"></a>pageContext</h4><p>​    pageContext对象是javax.servlet.jsp.PageContext类的实例对象，用来代表整个JSP页面。它代表页面上下文，该对象主要用于访问 JSP 之间的共享数据，使用pageContext可以访问page、request、session、application范围的变量。</p>
 <h3 id="config"><a href="#config" class="headerlink" title="config"></a>config</h3><p>​    配置对象(服务器配置信息)</p>
 <h4 id="page"><a href="#page" class="headerlink" title="page"></a>page</h4><p>​    当前JSP页面对象（相当于java中的this）</p>
 <h4 id="exception"><a href="#exception" class="headerlink" title="exception"></a>exception</h4><p>​    异常对象</p>
