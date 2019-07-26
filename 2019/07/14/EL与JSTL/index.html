@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="EL在jsp中使用java代码处理数据需要进行较麻烦的类型转换、处理null、代码掺杂，为了解决这一问题，可以使用EL表达式 EL示例： 1234$&amp;#123;requestScope.list.s1.name &amp;#125;$&amp;#123;作用域.域对象中的属性.属性.属性.级联属性&amp;#125;$&amp;#123;requestScope[&quot;list&quot;][&quot;s1&quot;][&quot;name&quot;] &amp;#125;$&amp;#12">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-15T12:43:51.194Z">
+<meta property="og:updated_time" content="2019-07-26T04:12:38.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EL与JSTL">
 <meta name="twitter:description" content="EL在jsp中使用java代码处理数据需要进行较麻烦的类型转换、处理null、代码掺杂，为了解决这一问题，可以使用EL表达式 EL示例： 1234$&amp;#123;requestScope.list.s1.name &amp;#125;$&amp;#123;作用域.域对象中的属性.属性.属性.级联属性&amp;#125;$&amp;#123;requestScope[&quot;list&quot;][&quot;s1&quot;][&quot;name&quot;] &amp;#125;$&amp;#12">
@@ -23,7 +23,7 @@
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/img/maotou.jpg">
   
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/maotou.png" class="js-avatar">
+			<img src="/img/maotou.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">John Doe</a></h1>
@@ -105,7 +105,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/img/maotou.png" class="js-avatar">
+				<img src="/img/maotou.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">John Doe</h1>
@@ -179,6 +179,8 @@
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$&#123;requestScope.list.s1.name &#125;</span><br><span class="line">$&#123;作用域.域对象中的属性.属性.属性.级联属性&#125;</span><br><span class="line">$&#123;requestScope[<span class="string">"list"</span>][<span class="string">"s1"</span>][<span class="string">"name"</span>] &#125;</span><br><span class="line">$&#123;作用域[<span class="string">"域对象中的属性"</span>][<span class="string">"属性"</span>][<span class="string">"属性"</span>][<span class="string">"级联属性"</span>]&#125;</span><br></pre></td></tr></table></figure>
 
 <p>EL中”.”操作符比”[]”操作符使用更加简单，但是”[]”操作符的功能更加强大</p>
+<a id="more"></a>
+
 <p>“[]”操作符中可以包含特殊字符（.   - …..）数字（下标）等,可以填写变量；列如：</p>
 <figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;%request.setAttribute(<span class="string">"m"</span>, <span class="string">"name"</span>);%&gt;</span><br><span class="line">$&#123;requestScope[<span class="string">"list"</span>][<span class="string">"s1"</span>][m] &#125;</span><br></pre></td></tr></table></figure>
 

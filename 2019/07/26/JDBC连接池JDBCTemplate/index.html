@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>虚拟主机 | Hexo</title>
+  <title>JDBC连接池和JDBCTemplate | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="通过www.baidu.com访问本地主机 在server.xml中配置">
+  <meta name="description" content="数据库连接池">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟主机">
-<meta property="og:url" content="http://yoursite.com/2019/06/30/虚拟主机/index.html">
+<meta property="og:title" content="JDBC连接池和JDBCTemplate">
+<meta property="og:url" content="http://yoursite.com/2019/07/26/JDBC连接池JDBCTemplate/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="通过www.baidu.com访问本地主机 在server.xml中配置">
+<meta property="og:description" content="数据库连接池">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-26T04:15:55.170Z">
+<meta property="og:updated_time" content="2019-07-26T04:16:05.643Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟主机">
-<meta name="twitter:description" content="通过www.baidu.com访问本地主机 在server.xml中配置">
+<meta name="twitter:title" content="JDBC连接池和JDBCTemplate">
+<meta name="twitter:description" content="数据库连接池">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -154,42 +154,121 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-虚拟主机" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-JDBC连接池JDBCTemplate" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      虚拟主机
+      JDBC连接池和JDBCTemplate
     </h1>
   
 
         
-        <a href="/2019/06/30/虚拟主机/" class="archive-article-date">
-  	<time datetime="2019-06-30T14:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
+        <a href="/2019/07/26/JDBC连接池JDBCTemplate/" class="archive-article-date">
+  	<time datetime="2019-07-26T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通过<a href="http://www.baidu.com访问本地主机" target="_blank" rel="noopener">www.baidu.com访问本地主机</a></p>
-<p>在server.xml中配置</p>
-<a id="more"></a>
+        <h1 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h1><a id="more"></a>
 
-<p>1.Engine标签中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;www.baidu.com&quot;  appBase=&quot;D:\Tomcat9\examples&quot;&gt;</span><br><span class="line">	&lt;Context docBase=&quot;D:\Tomcat9\examples&quot; path=&quot;/&quot; /&gt;</span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>1. 概念：其实就是一个容器(集合)，存放数据库连接的容器。
+        当系统初始化好后，容器被创建，容器中会申请一些连接对象，当用户来访问数据库时，从容器中获取连接对象，用户访问完之后，会将连接对象归还给容器。
+2. 好处：
+    1. 节约资源
+    2. 用户访问高效
 
-<p>name:虚拟主机名</p>
-<p>appBase:项目路径</p>
-<p>Context中属性常考<a href="https://zhiyuan1121.github.io/2019/06/30/%E8%99%9A%E6%8B%9F%E8%B7%AF%E5%BE%84/" target="_blank" rel="noopener">虚拟路径</a></p>
-<p>2.修改Engine中defaultHost属性填写需要的主机名</p>
-<p>3.在“C:\Windows\System32\drivers\etc\hosts”中添加</p>
-<p>127.0.0.1 <a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></p>
-<p>4.重启服务器</p>
-<p>ps:浏览器一般会对常用域名做判断，像baidu.com通常会提示风险警告</p>
+3. 实现：
+    1. 标准接口：DataSource   javax.sql包下的
+        1. 方法：
+            * 获取连接：getConnection()
+            * 归还连接：Connection.close()。如果连接对象Connection是从连接池中获取的，那么调用Connection.close()方法，则不会再关闭连接了。而是归还连接
 
+    2. 一般我们不去实现它，有数据库厂商来实现
+        1. C3P0：数据库连接池技术
+        2. Druid：数据库连接池实现技术，由阿里巴巴提供的
+
+
+4. C3P0：数据库连接池技术
+    * 步骤：
+        1. 导入jar包 (两个) c3p0-0.9.5.2.jar mchange-commons-java-0.2.12.jar ，
+            * 不要忘记导入数据库驱动jar包
+        2. 定义配置文件：
+            * 名称： c3p0.properties 或者 c3p0-config.xml
+            * 路径：直接将文件放在src目录下即可。
+
+        3. 创建核心对象 数据库连接池对象 ComboPooledDataSource
+        4. 获取连接： getConnection
+    * 代码：
+         //1.创建数据库连接池对象
+        DataSource ds  = new ComboPooledDataSource();//配置文件中可存在多个named-config标签用于存储不同的连接属性，传入name值获取不同的连接池对象，为空获取default-config标签下的连接属性
+        //2. 获取连接对象
+        Connection conn = ds.getConnection();
+5. Druid：数据库连接池实现技术，由阿里巴巴提供的
+    1. 步骤：
+        1. 导入jar包 druid-1.0.9.jar
+        2. 定义配置文件：
+            * 是properties形式的
+            * 可以叫任意名称，可以放在任意目录下
+        3. 加载配置文件。Properties
+        4. 获取数据库连接池对象：通过工厂来来获取  DruidDataSourceFactory
+        5. 获取连接：getConnection
+    * 代码：
+         //3.加载配置文件
+        Properties pro = new Properties();
+        InputStream is = DruidDemo.class.getClassLoader().getResourceAsStream(&quot;druid.properties&quot;);
+        pro.load(is);
+        //4.获取连接池对象
+        DataSource ds = DruidDataSourceFactory.createDataSource(pro);
+        //5.获取连接
+        Connection conn = ds.getConnection();                </code></pre><h2 id="Spring-JDBC"><a href="#Spring-JDBC" class="headerlink" title="Spring JDBC"></a>Spring JDBC</h2><pre><code>* Spring框架对JDBC的简单封装。提供了一个JDBCTemplate对象简化JDBC的开发
+* 步骤：
+    1. 导入jar包
+    2. 创建JdbcTemplate对象。依赖于数据源DataSource
+        * JdbcTemplate template = new JdbcTemplate(ds);
+
+    3. 调用JdbcTemplate的方法来完成CRUD的操作
+        * update():执行DML语句。增、删、改语句
+        * queryForMap():查询结果将结果集封装为map集合，将列名作为key，将值作为value 将这条记录封装为一个map集合
+            * 注意：这个方法查询的结果集长度只能是1
+        * queryForList():查询结果将结果集封装为list集合
+            * 注意：将每一条记录封装为一个Map集合，再将Map集合装载到List集合中
+        * query():查询结果，将结果封装为JavaBean对象
+            * query的参数：RowMapper
+                * 一般我们使用BeanPropertyRowMapper实现类。可以完成数据到JavaBean的自动封装
+                * new BeanPropertyRowMapper&lt;类型&gt;(类型.class)
+String sql = &quot;select * from emp&quot;;
+List&lt;Emp&gt; list = template.query(sql, new RowMapper&lt;Emp&gt;() {
+public Emp mapRow(ResultSet rs, int i) throws SQLException {
+    Emp emp = new Emp();
+    int id = rs.getInt(&quot;id&quot;);
+    String ename = rs.getString(&quot;ename&quot;);
+    int job_id = rs.getInt(&quot;job_id&quot;);
+    int mgr = rs.getInt(&quot;mgr&quot;);
+    Date joindate = rs.getDate(&quot;joindate&quot;);
+    double salary = rs.getDouble(&quot;salary&quot;);
+    double bonus = rs.getDouble(&quot;bonus&quot;);
+    int dept_id = rs.getInt(&quot;dept_id&quot;);
+
+    emp.setId(id);
+    emp.setEname(ename);
+    emp.setJob_id(job_id);
+    emp.setMgr(mgr);
+    emp.setJoindate(joindate);
+    emp.setSalary(salary);
+    emp.setBonus(bonus);
+    emp.setDept_id(dept_id);
+
+    return emp;
+    }
+});
+        * queryForObject：查询结果，将结果封装为对象
+            * 一般用于聚合函数的查询
+            Long total = template.queryForObject(sql, Long.class);</code></pre>
       
 
       
@@ -247,7 +326,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/06/30/虚拟主机/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/26/JDBC连接池JDBCTemplate/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -261,18 +340,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/01/jsp九大内置对象/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          jsp九大内置对象
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/06/30/虚拟路径/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">虚拟路径</div>
+    <a href="/2019/07/23/多表和事务/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">多表和事务</div>
       <i class="icon-circle-right"></i>
     </a>
   
