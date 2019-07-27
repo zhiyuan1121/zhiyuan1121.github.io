@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Mybatis(二) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="连接池，动态SQL，多表查询，延迟加载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis(二)">
+<meta property="og:url" content="http://yoursite.com/2019/07/27/Mybatis二/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="连接池，动态SQL，多表查询，延迟加载">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-27T09:41:39.559Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Mybatis(二)">
+<meta name="twitter:description" content="连接池，动态SQL，多表查询，延迟加载">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,295 +152,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mybatis二" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis-三/" class="archive-article-date">
-  	<time datetime="2019-07-27T08:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis-三/">Mybatis(三)</a>
+    <h1 class="article-title" itemprop="name">
+      Mybatis(二)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis二/" class="archive-article-date">
+        
+        <a href="/2019/07/27/Mybatis二/" class="archive-article-date">
   	<time datetime="2019-07-27T03:52:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis二/">Mybatis(二)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>连接池，动态SQL，多表查询，延迟加载</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>Mybatis使用连接池配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">	修改dataSource 标签的type进行线程池配置</span><br><span class="line"></span><br><span class="line">​		 UNPOOLED     不使用连接池的数据源</span><br><span class="line"></span><br><span class="line">​		 POOLED       使用连接池的数据源</span><br><span class="line"></span><br><span class="line">​		 JNDI         使用 JNDI 实现的数据源 </span><br><span class="line">MyBatis 在初始化时，根据&lt;dataSource&gt;的 type 属性来创建相应类型的的数据源 DataSource，即： type=”POOLED”：MyBatis 会创建 PooledDataSource 实例 type=”UNPOOLED” ： MyBatis 会创建 UnpooledDataSource 实例 type=”JNDI”：MyBatis 会从 JNDI 服务上查找 DataSource 实例，然后返回使用</span><br></pre></td></tr></table></figure>
 
+<h4 id="Mybatis-中简化编写的-SQL-片段"><a href="#Mybatis-中简化编写的-SQL-片段" class="headerlink" title="Mybatis 中简化编写的 SQL 片段"></a>Mybatis 中简化编写的 SQL 片段</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--定义代码片段--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">"defaultSql"</span>&gt;</span></span><br><span class="line">    select * from user  </span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--引用代码片段--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"defaultSql"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--等价于--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    select * from user</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="动态SQL"><a href="#动态SQL" class="headerlink" title="动态SQL"></a>动态SQL</h4><p>1.<if>标签</if></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByUser"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    select * from user where 1=1</span><br><span class="line"> <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username!=null and username != '' "</span>&gt;</span></span><br><span class="line">     and username like #&#123;username&#125;  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"address != null"</span>&gt;</span></span><br><span class="line">     and address like #&#123;address&#125;  </span><br><span class="line"> <span class="tag">&lt;/<span class="name">if</span>&gt;</span>    </span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 若test中的条件成立则将标签中的内容拼接在主语句后面 --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.<where>标签 </where></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- 根据用户信息查询 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findByUser"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">    select * from user</span><br><span class="line">    <span class="tag">&lt;<span class="name">where</span>&gt;</span> </span><br><span class="line">   		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"username!=null and username != '' "</span>&gt;</span></span><br><span class="line">      		 and username like #&#123;username&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span> </span><br><span class="line">   		<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"address != null"</span>&gt;</span></span><br><span class="line">       		and address like #&#123;address&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- where标签会自动将标签内的条件进行拼接 让sql语句看上去更简洁--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.<foreach>标签</foreach></p>
+<p>需求:</p>
+<p>​    传入多个 id 查询用户信息，用下边两个 sql 实现： SELECT * FROM USERS WHERE username LIKE ‘%张%’ AND (id =10 OR id =89 OR id=16) SELECT * FROM USERS WHERE username LIKE ‘%张%’ AND id IN (10,89,16) </p>
+<p>​    这样我们在进行范围查询时，就要将一个集合中的值，作为参数动态添加进来。 这样我们将如何进行参数的传递？ </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- 查询所有用户在 id 的集合之中 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findInIds"</span> <span class="attr">resultType</span>=<span class="string">"user"</span> <span class="attr">parameterType</span>=<span class="string">"queryvo"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--在queryvo对象中封装了一个集合ids--&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">"defaultSql"</span>&gt;</span><span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">where</span>&gt;</span> </span><br><span class="line">   	<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">"ids != null and ids.size() &gt; 0"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">"ids"</span> <span class="attr">open</span>=<span class="string">"id in ( "</span> <span class="attr">close</span>=<span class="string">")"</span> <span class="attr">item</span>=<span class="string">"uid"</span>  <span class="attr">separator</span>=<span class="string">","</span>&gt;</span></span><br><span class="line">           #&#123;uid&#125;</span><br><span class="line">       <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">where</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">&lt;foreach&gt;标签用于遍历集合，它的属性：</span></span><br><span class="line"><span class="comment">  collection:代表要遍历的集合元素，注意编写时不要写#&#123;&#125; </span></span><br><span class="line"><span class="comment">  open:代表语句的开始部分</span></span><br><span class="line"><span class="comment">  close:代表结束部分</span></span><br><span class="line"><span class="comment">  separator:代表分割符</span></span><br><span class="line"><span class="comment"> --&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Mybatis-多表查询"><a href="#Mybatis-多表查询" class="headerlink" title="Mybatis 多表查询"></a>Mybatis 多表查询</h4><p>1.一对一</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一对一实体类的编写，可以选择一个实体类继承例外一个实体类，也可以选择在一个实体类中定义另一个实体类的对象，前者辅配置文件与单表查询一致，后者需要建立对应关系</span><br></pre></td></tr></table></figure>
+
+<p>对应关系建立</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">&lt;!-- 建立对应关系 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"account"</span> <span class="attr">id</span>=<span class="string">"accountMap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"aid"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">property</span>=<span class="string">"uid"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"money"</span> <span class="attr">property</span>=<span class="string">"money"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- associatin标签用于建立一对一的实体对应关系(返回数据为单个)  property为account对象中封装的对象名，javaType为对象类型 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"user"</span> <span class="attr">javaType</span>=<span class="string">"user"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"birthday"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.一对多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一对多实体类编写，在主对象中定义一个集合属性用于存放次对象  次对象的实体类需要实现Serializable接口，同样的也需要建立对应关系</span><br></pre></td></tr></table></figure>
+
+<p>对应关系建立</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"user"</span> <span class="attr">id</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">property</span>=<span class="string">"id"</span>&gt;</span><span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"username"</span> <span class="attr">property</span>=<span class="string">"username"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"address"</span> <span class="attr">property</span>=<span class="string">"address"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"sex"</span> <span class="attr">property</span>=<span class="string">"sex"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"birthday"</span> <span class="attr">property</span>=<span class="string">"birthday"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- collection 是用于建立一对多中集合属性的对应关系(返回数据为多个)    ofType 用于指定集合元素的数据类型    property:关联查询的结果集存储在 User 对象的上哪个属性--&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"accounts"</span> <span class="attr">ofType</span>=<span class="string">"account"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"aid"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">property</span>=<span class="string">"uid"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"money"</span> <span class="attr">property</span>=<span class="string">"money"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span></span></span><br></pre></td></tr></table></figure>
+
+<p>3.多对多</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">多对多实体类的编写，多对多关系其实我们看成是双向的一对多关系，实体类跟对应关系与一对多的类似</span><br></pre></td></tr></table></figure>
+
+<h4 id="延迟加载"><a href="#延迟加载" class="headerlink" title="延迟加载"></a>延迟加载</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">延迟加载：   就是在需要用到数据时才进行加载，不需要用到数据时就不加载数据。延迟加载也称懒加载.</span><br><span class="line"></span><br><span class="line"> 好处：先从单表查询，需要时再从关联表去关联查询，大大提高数据库性能，因为查询单表要比关联查询多张表速 度要快。  </span><br><span class="line"></span><br><span class="line">坏处：   因为只有当需要用到数据时，才会进行数据库查询，这样在大批量数据查询时，因为查询工作也要消耗 时间，所以可能造成用户等待时间变长，造成用户体验下降。</span><br></pre></td></tr></table></figure>
+
+<p>开启延迟加载</p>
+<p>​    在配置文件中设置全局配置参数，可在<a href="http://www.mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener">官网</a>查询到</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">settings</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!--lazyLoadingEnabled 延迟加载的全局开关。当开启时，所有关联对象都会延迟加载。 特定关联关系中可通过设置 fetchType 属性来覆盖该项的开关状态--&gt;</span></span><br><span class="line"> 	<span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"lazyLoadingEnabled"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 当开启时，任何方法的调用都会加载该对象的所有属性。 否则，每个属性会按需加载 （在 3.4.1 及之前的版本默认值为 true）--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">setting</span> <span class="attr">name</span>=<span class="string">"aggressiveLazyLoading"</span> <span class="attr">value</span>=<span class="string">"false"</span>/&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用延迟加载进行多表操作是需要把查询进行分离所以要对持久层接口和持久层映射文件进行改造，将对应关系与查询语句绑定起来</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper</span></span><br><span class="line"><span class="meta">PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.itheima.dao.IAccountDao"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 建立对应关系 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"account"</span> <span class="attr">id</span>=<span class="string">"accountMap"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">"aid"</span> <span class="attr">property</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"uid"</span> <span class="attr">property</span>=<span class="string">"uid"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"money"</span> <span class="attr">property</span>=<span class="string">"money"</span>/&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 它是用于指定从表方的引用实体属性的 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">association</span> <span class="attr">property</span>=<span class="string">"user"</span> <span class="attr">javaType</span>=<span class="string">"user"</span>      <span class="attr">select</span>=<span class="string">"com.itheima.dao.IUserDao.findById"</span>     <span class="attr">column</span>=<span class="string">"uid"</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;/<span class="name">association</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"> <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findAll"</span> <span class="attr">resultMap</span>=<span class="string">"accountMap"</span>&gt;</span></span><br><span class="line">     select * from account  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">	select：填写我们要调用的select映射的id</span></span><br><span class="line"><span class="comment">  	column：填写我们要传递给select映射的参数 </span></span><br><span class="line"><span class="comment">若是一对多，或者多对多这将association标签改为collection标签</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/27/Mybatis二/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/Mybatis/" class="archive-article-date">
-  	<time datetime="2019-07-26T12:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/07/27/Mybatis-三/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Mybatis(三)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/26/Mybatis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis基本使用</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/Mybatis/">Mybatis基本使用</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/JDBC连接池JDBCTemplate/" class="archive-article-date">
-  	<time datetime="2019-07-26T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/JDBC连接池JDBCTemplate/">JDBC连接池和JDBCTemplate</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/23/多表和事务/" class="archive-article-date">
-  	<time datetime="2019-07-23T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/23/多表和事务/">多表和事务</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/21/DQL和约束/" class="archive-article-date">
-  	<time datetime="2019-07-21T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/21/DQL和约束/">DQL和约束</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/20/MySQL基础/" class="archive-article-date">
-  	<time datetime="2019-07-20T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/20/MySQL基础/">MySQL基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/16/Ajax/" class="archive-article-date">
-  	<time datetime="2019-07-16T13:20:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/16/Ajax/">Ajax</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/14/EL与JSTL/" class="archive-article-date">
-  	<time datetime="2019-07-14T13:35:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/14/EL与JSTL/">EL与JSTL</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/07/Servlet/" class="archive-article-date">
-  	<time datetime="2019-07-07T08:23:05.039Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/07/Servlet/">Servlet</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +355,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

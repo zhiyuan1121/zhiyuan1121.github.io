@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | Hexo</title>
+  <title>Mybatis基本使用 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="MyBatis 框架概述">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis基本使用">
+<meta property="og:url" content="http://yoursite.com/2019/07/26/Mybatis/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="MyBatis 框架概述">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-07-27T08:43:14.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Mybatis基本使用">
+<meta name="twitter:description" content="MyBatis 框架概述">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,295 +152,179 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Mybatis" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis-三/" class="archive-article-date">
-  	<time datetime="2019-07-27T08:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis-三/">Mybatis(三)</a>
+    <h1 class="article-title" itemprop="name">
+      Mybatis基本使用
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis二/" class="archive-article-date">
-  	<time datetime="2019-07-27T03:52:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis二/">Mybatis(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/Mybatis/" class="archive-article-date">
+        
+        <a href="/2019/07/26/Mybatis/" class="archive-article-date">
   	<time datetime="2019-07-26T12:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/Mybatis/">Mybatis基本使用</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="MyBatis-框架概述"><a href="#MyBatis-框架概述" class="headerlink" title="MyBatis 框架概述"></a>MyBatis 框架概述</h4><a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mybatis是一个优秀的基于 java 的持久层框架，它内部封装了 jdbc，使开发者只需要关注 sql语句本身， 而不需要花费精力去处理加载驱动、创建连接、创建 statement 等繁杂的过程。 mybatis通过xml 或注解的方式将要执行的各种statement配置起来，并通过java对象和statement 中 sql 的动态参数进行映射生成最终执行的 sql 语句，最后由 mybatis 框架执行 sql 并将结果映射为 java 对象并 返回。 采用 ORM 思想解决了实体和数据库映射的问题，对 jdbc进行了封装，屏蔽了 jdbc api 底层访问细节，使我们不用与 jdbc api 打交道，就可以完成对数据库的持久化操作。</span><br></pre></td></tr></table></figure>
 
+<h4 id="MyBatis-框架基本使用流程"><a href="#MyBatis-框架基本使用流程" class="headerlink" title="MyBatis 框架基本使用流程"></a>MyBatis 框架基本使用流程</h4><p>1在 pom.xml 文件中添加 Mybatis3.4.5 的坐标</p>
+<p>​    在<dependencies>标签下新增内容，可在<a href="http://www.mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener">官网</a>中找到以下内容</dependencies></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.编写实体类 建议属性名与数据库中表的列名一致</p>
+<p>3.编写持久层接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">IUserDao</span> </span>&#123; </span><br><span class="line">	<span class="comment">/*查询全部用户信息*/</span></span><br><span class="line">	<span class="function">List&lt;User&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">/*添加用户信息*/</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">AddUser</span><span class="params">(User user)</span></span>;</span><br><span class="line">    <span class="comment">/*修改用户信息*/</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">UpdateUser</span><span class="params">(User user)</span></span>;</span><br><span class="line">    <span class="comment">/*添加用户信息*/</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">DelectUser</span><span class="params">(String id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>4在resources下添加主配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration  </span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  </span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">   	 <span class="comment">&lt;!-- 给实体类定义别名，使用别名可无视大小写 --&gt;</span></span><br><span class="line">  	 <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">  	 	<span class="comment">&lt;!-- 单个定义别名 --&gt;</span></span><br><span class="line">  	 	<span class="tag">&lt;<span class="name">typeAlias</span> <span class="attr">alias</span>=<span class="string">"sfz"</span> <span class="attr">type</span>=<span class="string">"com.entity.Sfz"</span>/&gt;</span></span><br><span class="line">  	 	<span class="comment">&lt;!-- 批量定义别名，扫描整个包下的类，别名为类名（首字母大小写都可以） --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--   	 	&lt;package name="com.entity"/&gt; --&gt;</span></span><br><span class="line">  	 <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">  	  </span><br><span class="line">  	<span class="comment">&lt;!-- 配置环境 --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">environments</span> <span class="attr">default</span>=<span class="string">"sqlserver"</span>&gt;</span></span><br><span class="line">  		<span class="comment">&lt;!-- 配置sqlserver环境 --&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">environment</span> <span class="attr">id</span>=<span class="string">"sqlserver"</span>&gt;</span></span><br><span class="line">  			<span class="comment">&lt;!-- 配置事务类型 --&gt;</span></span><br><span class="line">  			<span class="tag">&lt;<span class="name">transactionManager</span> <span class="attr">type</span>=<span class="string">"JDBC"</span>&gt;</span><span class="tag">&lt;/<span class="name">transactionManager</span>&gt;</span></span><br><span class="line">  			<span class="comment">&lt;!-- 配置数据源（连接池） --&gt;</span></span><br><span class="line">  			<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">  				<span class="comment">&lt;!-- 配置数据库基本信息 --&gt;</span></span><br><span class="line">  				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span>/&gt;</span></span><br><span class="line">  				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:sqlserver://127.0.0.1:1433;databasename=User"</span>/&gt;</span></span><br><span class="line">  				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"sa"</span>/&gt;</span></span><br><span class="line">  				<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line">  			<span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;/<span class="name">environment</span>&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">environments</span>&gt;</span></span><br><span class="line">  	  	   	</span><br><span class="line">  	<span class="comment">&lt;!-- 指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件</span></span><br><span class="line"><span class="comment">  		使用注解调用则使用class属性或package选择包</span></span><br><span class="line"><span class="comment">  	 --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--   		&lt;mapper class="com.dao.IsfzDao"/&gt; --&gt;</span></span><br><span class="line">   			<span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"com/dao/IsfzDao.xml"</span>/&gt;</span> </span><br><span class="line"><span class="comment">&lt;!--  		&lt;package name="com.dao"/&gt; --&gt;</span></span><br><span class="line">  	<span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>5使用配置文件设置编写配置文件</p>
+<p>​    映射配置文件需要与编写持久层接口包名路径一致(com.dao对应resources/com/dao)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper  </span></span><br><span class="line"><span class="meta">  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  </span></span><br><span class="line"><span class="meta">  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span>	<span class="attr">namespace</span>=<span class="string">"com.dao.IUserDao"</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- 配置查询结果的列名和实体类的属性名对应关系 若实体类属性名与数据库表列名一致则无需设置	--&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">type</span>=<span class="string">"实体类全限定类名"</span> <span class="attr">id</span>=<span class="string">"对应关系名"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 主键字段对应 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"属性名"</span> <span class="attr">column</span>=<span class="string">"列名"</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 非主键字段对应 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"实体类属性名"</span> <span class="attr">column</span>=<span class="string">"数据库列名"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"接口对应方法"</span> <span class="attr">resultType</span>=<span class="string">"对应实体类全限定类名 or 对应关系名 or 主配置文件定义的别名"</span>&gt;</span></span><br><span class="line">		select * from User</span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"AddUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.entity.User"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- 获取添加数据的主键 keyProperty对象对应的属性名  keyColumn表的列名   resultType返回类型   order执行前后获取 AFTER执行后获取</span></span><br><span class="line"><span class="comment">		&lt;selectKey keyProperty="id" keyColumn="id" resultType="int" order="AFTER"&gt;</span></span><br><span class="line"><span class="comment">			select last_insert_id();</span></span><br><span class="line"><span class="comment">		&lt;/selectKey&gt;</span></span><br><span class="line"><span class="comment">		 --&gt;</span></span><br><span class="line">		insert into User values(#&#123;属性1&#125;,#&#123;属性2&#125;) </span><br><span class="line">        <span class="comment">&lt;!--若是手动书写的get方法如getXxx(),则用Xxx获取属性--&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 数据填充使用#相当于预处理 使用$相当于字符串拼接 若属性为对象可以继续进行获取 如 #&#123;对象属性.属性&#125;--&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">"UpdateUser"</span> <span class="attr">parameterType</span>=<span class="string">"com.entity.Sfz"</span>&gt;</span></span><br><span class="line">		update User set name=#&#123;属性1&#125; where sfzid=#&#123;属性2&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">"DelectUser"</span> <span class="attr">parameterType</span>=<span class="string">"java.lang.String"</span>&gt;</span></span><br><span class="line">		delete from bate where name=#&#123;任意变量名&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>6.执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//1.读取配置文件</span></span><br><span class="line">InputStream in = Resources.getResourceAsStream(<span class="string">"SqlMapConfig.xml"</span>);</span><br><span class="line"><span class="comment">//2.创建 SqlSessionFactory 的构建者对象</span></span><br><span class="line">SqlSessionFactoryBuilder builder = <span class="keyword">new</span> SqlSessionFactoryBuilder();</span><br><span class="line"><span class="comment">//3.使用构建者创建工厂对象</span></span><br><span class="line">SqlSessionFactory   SqlSessionFactory factory = builder.build(in);</span><br><span class="line"><span class="comment">//4.使用 SqlSessionFactory 生产 SqlSession 对象 可传递boolean值参数true自动提交事务</span></span><br><span class="line">SqlSession session = factory.openSession(); </span><br><span class="line"><span class="comment">//5.使用 SqlSession 创建 dao 接口的代理对象</span></span><br><span class="line">IUserDao userDao = session.getMapper(IUserDao.class);</span><br><span class="line"><span class="comment">//6.使用代理对象执行查询所有方法</span></span><br><span class="line">List&lt;User&gt; users = userDao.findAll();</span><br><span class="line">	<span class="comment">//执行增删改方法</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	User user = new User();</span></span><br><span class="line"><span class="comment">	设置user数据</span></span><br><span class="line"><span class="comment">	userDao.AddUser(user);</span></span><br><span class="line"><span class="comment">	//提交事务</span></span><br><span class="line"><span class="comment">	session.commit();</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line"><span class="keyword">for</span>(User user : users)</span><br><span class="line">&#123;</span><br><span class="line">    System.out.println(user);</span><br><span class="line">&#125; </span><br><span class="line">  <span class="comment">//7.释放资源</span></span><br><span class="line">session.close();</span><br><span class="line">in.close();</span><br></pre></td></tr></table></figure>
+
+<h4 id="主配置文件配置内容和顺序"><a href="#主配置文件配置内容和顺序" class="headerlink" title="主配置文件配置内容和顺序"></a>主配置文件配置内容和顺序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">-properties（属性）</span><br><span class="line">	--property</span><br><span class="line">-settings（全局配置参数）</span><br><span class="line">	--setting </span><br><span class="line">-typeAliases（类型别名）</span><br><span class="line">	--typeAliase</span><br><span class="line">	--package</span><br><span class="line">-typeHandlers（类型处理器）</span><br><span class="line">-objectFactory（对象工厂）</span><br><span class="line">-plugins（插件）</span><br><span class="line">-environments（环境集合属性对象）</span><br><span class="line">	--environment（环境子属性对象）</span><br><span class="line">		---transactionManager（事务管理）</span><br><span class="line">		---dataSource（数据源）</span><br><span class="line">-mappers（映射器）</span><br><span class="line">	--mapper</span><br><span class="line">	--package</span><br></pre></td></tr></table></figure>
+
+<p>在使用 properties 标签配置时，我们可以采用两种方式指定属性配置。</p>
+<p>1.在配置文件中配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbc.driver"</span> <span class="attr">value</span>=<span class="string">"com.microsoft.sqlserver.jdbc.SQLServerDriver"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbc.url"</span> <span class="attr">value</span>=<span class="string">"jdbc:sqlserver://127.0.0.1:1433;databasename=User"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbc.username"</span> <span class="attr">value</span>=<span class="string">"sa"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbc.password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>在 classpath 下定义 db.properties 文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">jdbc.driver=com.microsoft.sqlserver.jdbc.SQLServerDriver </span><br><span class="line">jdbc.url=jdbc:sqlserver://127.0.0.1:1433;databasename=User</span><br><span class="line">jdbc.username=sa </span><br><span class="line">jdbc.password=123456</span><br></pre></td></tr></table></figure>
+
+<p>此时我们的 dataSource 标签就变成了引用上面的配置 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">"POOLED"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driver"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driver&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataSource</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/26/Mybatis/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/JDBC连接池JDBCTemplate/" class="archive-article-date">
-  	<time datetime="2019-07-26T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/07/27/Mybatis二/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Mybatis(二)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/26/JDBC连接池JDBCTemplate/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JDBC连接池和JDBCTemplate</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/JDBC连接池JDBCTemplate/">JDBC连接池和JDBCTemplate</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/23/多表和事务/" class="archive-article-date">
-  	<time datetime="2019-07-23T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/23/多表和事务/">多表和事务</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/21/DQL和约束/" class="archive-article-date">
-  	<time datetime="2019-07-21T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/21/DQL和约束/">DQL和约束</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/20/MySQL基础/" class="archive-article-date">
-  	<time datetime="2019-07-20T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/20/MySQL基础/">MySQL基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/16/Ajax/" class="archive-article-date">
-  	<time datetime="2019-07-16T13:20:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/16/Ajax/">Ajax</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/14/EL与JSTL/" class="archive-article-date">
-  	<time datetime="2019-07-14T13:35:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/14/EL与JSTL/">EL与JSTL</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/07/Servlet/" class="archive-article-date">
-  	<time datetime="2019-07-07T08:23:05.039Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/07/Servlet/">Servlet</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +348,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
