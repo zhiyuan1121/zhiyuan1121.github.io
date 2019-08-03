@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019/8 | Hexo</title>
+  <title>srping-AOP | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/08/index.html">
+  <meta name="description" content="通过配置的方式，实现动态代理增强方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="srping-AOP">
+<meta property="og:url" content="http://yoursite.com/2019/08/03/srping-AOP/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通过配置的方式，实现动态代理增强方法">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-03T08:24:08.299Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="srping-AOP">
+<meta name="twitter:description" content="通过配置的方式，实现动态代理增强方法">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,103 +152,157 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-srping-AOP" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      srping-AOP
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/srping-AOP/" class="archive-article-date">
+
+        
+        <a href="/2019/08/03/srping-AOP/" class="archive-article-date">
   	<time datetime="2019-08-03T06:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/srping-AOP/">srping-AOP</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过配置的方式，实现动态代理增强方法</p>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
-          
+<h5 id="导入坐标"><a href="#导入坐标" class="headerlink" title="导入坐标"></a>导入坐标</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">   &lt;dependency&gt;</span><br><span class="line">   	&lt;groupId&gt;org.aspectj&lt;/groupId&gt;</span><br><span class="line">   	&lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</span><br><span class="line">   	&lt;version&gt;1.8.6&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
 
+<h5 id="AOP相关术语"><a href="#AOP相关术语" class="headerlink" title="AOP相关术语"></a>AOP相关术语</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Joinpoint(连接点):</span><br><span class="line">	所谓连接点是指那些被拦截到的点。在 spring 中,这些点指的是方法,因为 spring 只支持方法类型的 连接点。 </span><br><span class="line">Pointcut(切入点):</span><br><span class="line">	所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。 </span><br><span class="line">Advice(通知/增强):</span><br><span class="line">	所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。   通知的类型：前置通知,后置通知,异常通知,最终通知,环绕通知。 </span><br><span class="line">Introduction(引介):</span><br><span class="line">	引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方 法或 Field。 </span><br><span class="line">Target(目标对象):</span><br><span class="line">	代理的目标对象。 </span><br><span class="line">Weaving(织入):</span><br><span class="line">	是指把增强应用到目标对象来创建新的代理对象的过程。   spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。 </span><br><span class="line">Proxy（代理）:</span><br><span class="line">	一个类被 AOP 织入增强后，就产生一个结果代理类。 </span><br><span class="line">Aspect(切面):</span><br><span class="line">	是切入点和通知（引介）的结合。</span><br></pre></td></tr></table></figure>
+
+<h5 id="通知类型"><a href="#通知类型" class="headerlink" title="通知类型"></a>通知类型</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">前置通知：</span><br><span class="line">	在方法执行前执行</span><br><span class="line">后置通知：</span><br><span class="line">	在方法执行之后执行，可以用于提交事务</span><br><span class="line">异常通知：</span><br><span class="line">	前置通知，后置通知，方法主体执行过程中出现异常时执行，可以用于事务回滚</span><br><span class="line">最终通知：</span><br><span class="line">	可理解为finally中的代码。可以用于释放资源。</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//环绕通知</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">transactionAround</span><span class="params">(ProceedingJoinPoint pjp)</span> </span>&#123;</span><br><span class="line">	  <span class="comment">//定义返回值</span></span><br><span class="line">		Object rtValue = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//获取方法执行所需的参数</span></span><br><span class="line">			Object[] args = pjp.getArgs(); </span><br><span class="line">			<span class="comment">//前置通知   </span></span><br><span class="line">			System.out.println(<span class="string">"环绕通知：前置"</span>); </span><br><span class="line">			<span class="comment">//执行方法  </span></span><br><span class="line">			rtValue = pjp.proceed(args); </span><br><span class="line">			<span class="comment">//后置通知  </span></span><br><span class="line">			System.out.println(<span class="string">"环绕通知：后置"</span>); </span><br><span class="line">			session.commit();</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Throwable e) &#123;</span><br><span class="line">			<span class="comment">//异常通知</span></span><br><span class="line">			System.out.println(e.getMessage());</span><br><span class="line">			System.out.println(<span class="string">"环绕通知：异常"</span>); </span><br><span class="line">			&#125;<span class="keyword">finally</span> &#123; </span><br><span class="line">				<span class="comment">//最终通知 </span></span><br><span class="line">				System.out.println(<span class="string">"环绕通知：最终"</span>); </span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> rtValue; </span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//如果环绕通知与其他通知都进行了配置，则会将环绕通知当做方法主体带入其他通知中执行</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="关于代理的选择"><a href="#关于代理的选择" class="headerlink" title="关于代理的选择"></a>关于代理的选择</h5><p>​    在 spring 中，框架会根据目标类是否实现了接口来决定采用哪种动态代理的方式。 </p>
+<h4 id="基于XML的AOP配置"><a href="#基于XML的AOP配置" class="headerlink" title="基于XML的AOP配置"></a>基于XML的AOP配置</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--将需要的对象存入ioc容器--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.service"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.util"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    		<span class="comment">&lt;!-- 于声明开始 aop 的配置  --&gt;</span></span><br><span class="line">    	<span class="tag">&lt;<span class="name">aop:config</span>&gt;</span> </span><br><span class="line">    		<span class="comment">&lt;!-- 配置切入点表达式 --&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"pt1"</span> <span class="attr">expression</span>=<span class="string">"execution(* com.service.*.*(..))"</span>/&gt;</span></span><br><span class="line">    		<span class="comment">&lt;!-- 用于配置切面。 id：给切面提供一个唯一标识,ref：引用配置好的通知类 bean 的 id,order的优先级越低优先级越高 --&gt;</span></span><br><span class="line">    		<span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"txservice"</span> <span class="attr">ref</span>=<span class="string">"TransactionManager"</span> <span class="attr">order</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">    			<span class="comment">&lt;!-- 用于配置前置通知。method:用于指定通知类中的增强方法名称 ，ponitcut-ref：用于指定切入点的表达式的引用 ，poinitcut：用于指定切入点表达式 --&gt;</span>	    		</span><br><span class="line">	    		<span class="tag">&lt;<span class="name">aop:before</span> <span class="attr">method</span>=<span class="string">"beginTransaction"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span> </span><br><span class="line">	    		<span class="comment">&lt;!-- 后置通知，returning:用于接收方法放回值参数为增强方法形参名 --&gt;</span></span><br><span class="line">	    		<span class="tag">&lt;<span class="name">aop:after-returning</span> <span class="attr">method</span>=<span class="string">"commit"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span> <span class="attr">returning</span>=<span class="string">"returnVal"</span>/&gt;</span></span><br><span class="line">	    		<span class="comment">&lt;!-- 异常通知,throwing:增强方法形参名 --&gt;</span> </span><br><span class="line">	    		<span class="tag">&lt;<span class="name">aop:after-throwing</span> <span class="attr">method</span>=<span class="string">"rollback"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span> <span class="attr">throwing</span>=<span class="string">"throwable"</span>/&gt;</span></span><br><span class="line">	    		<span class="comment">&lt;!-- 最终通知 --&gt;</span> </span><br><span class="line">	    		<span class="tag">&lt;<span class="name">aop:after</span> <span class="attr">method</span>=<span class="string">"release"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span></span><br><span class="line">	    		<span class="comment">&lt;!-- 环绕通知 --&gt;</span> </span><br><span class="line"> 	    		<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">method</span>=<span class="string">"transactionAround"</span> <span class="attr">pointcut-ref</span>=<span class="string">"pt1"</span>/&gt;</span> </span><br><span class="line">    		<span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line">    	<span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="切面表达式"><a href="#切面表达式" class="headerlink" title="切面表达式"></a>切面表达式</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">表达式语法：execution([修饰符] 返回值类型 包名.类名.方法名(参数))</span><br><span class="line">	修饰符可以省略</span><br><span class="line">	返回值可以使用*号，表示任意返回值</span><br><span class="line">	包名可以使用*号，表示任意包，但是有几级包，需要写几个*</span><br><span class="line">	使用..来表示当前包，及其子包</span><br><span class="line">	类名可以使用*号，表示任意类</span><br><span class="line">	方法名可以使用*号，表示任意方法</span><br><span class="line">	参数列表可以使用*，表示参数可以是任意数据类型，但是必须有参数</span><br><span class="line">	参数列表可以使用..表示有无参数均可，有参数可以是任意类型</span><br><span class="line">	* *..*.*(..)可以表示所有</span><br></pre></td></tr></table></figure>
+
+<h4 id="基于注解的AOP配置"><a href="#基于注解的AOP配置" class="headerlink" title="基于注解的AOP配置"></a>基于注解的AOP配置</h4><p>配置文件中开启Spring对注解aop的支持</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:aspectj-autoproxy/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>常用注解实例</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(<span class="string">"TransactionManager"</span>)</span><br><span class="line"><span class="meta">@Aspect</span><span class="comment">//声明该类为切面类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionManager</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	SqlSession session;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">//指定切入点表达式</span></span><br><span class="line">	<span class="meta">@Pointcut</span>(<span class="string">"execution(* com.service.*.*(..))"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">pt1</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSession</span><span class="params">(SqlSession session)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.session = session;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//把该方法看作前置通知，属性value：用于指定切入点表达式或切入点表达式的引用 </span></span><br><span class="line">	<span class="meta">@Before</span>(<span class="string">"pt1()"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beginTransaction</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"前置通知"</span>);</span><br><span class="line">	&#125;;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//把该方法看作后置通知，属性returning用于接收返回值</span></span><br><span class="line">	<span class="meta">@AfterReturning</span>(value=<span class="string">"pt1()"</span>,returning = <span class="string">"returnVal"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">commit</span><span class="params">(Object returnVal)</span> </span>&#123; </span><br><span class="line">		session.commit();</span><br><span class="line">		<span class="comment">//System.out.println(session);</span></span><br><span class="line">		System.out.println(<span class="string">"后置通知"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//把该方法看作异常通知，属性throwing用于接收异常</span></span><br><span class="line">	<span class="meta">@AfterThrowing</span>(value=<span class="string">"pt1()"</span>,throwing=<span class="string">"throwable"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rollback</span><span class="params">(Throwable throwable)</span> </span>&#123; </span><br><span class="line">		System.out.println(<span class="string">"异常通知"</span>+throwable.getMessage());</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//把该方法看作最终通知</span></span><br><span class="line">	<span class="meta">@After</span>(<span class="string">"pt1()"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">release</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"最终通知"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//把该方法看作环绕通知</span></span><br><span class="line"><span class="comment">//	@Around("pt1()")</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">transactionAround</span><span class="params">(ProceedingJoinPoint pjp)</span> </span>&#123;</span><br><span class="line">	  <span class="comment">//定义返回值</span></span><br><span class="line">		Object rtValue = <span class="keyword">null</span>;</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			<span class="comment">//获取方法执行所需的参数</span></span><br><span class="line">			Object[] args = pjp.getArgs(); </span><br><span class="line">			<span class="comment">//前置通知   </span></span><br><span class="line">			System.out.println(<span class="string">"环绕通知：前置"</span>); </span><br><span class="line">			<span class="comment">//执行方法  </span></span><br><span class="line">			rtValue = pjp.proceed(args); </span><br><span class="line">			<span class="comment">//后置通知  </span></span><br><span class="line">			System.out.println(<span class="string">"环绕通知：后置"</span>); </span><br><span class="line">			session.commit();</span><br><span class="line">			<span class="comment">//commit(rtValue);</span></span><br><span class="line">		&#125;<span class="keyword">catch</span>(Throwable e) &#123;</span><br><span class="line">			<span class="comment">//异常通知</span></span><br><span class="line">			System.out.println(e.getMessage());</span><br><span class="line">			System.out.println(<span class="string">"环绕通知：异常"</span>); </span><br><span class="line">			&#125;<span class="keyword">finally</span> &#123; </span><br><span class="line">				<span class="comment">//最终通知 </span></span><br><span class="line">				System.out.println(<span class="string">"环绕通知：最终"</span>); </span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span> rtValue; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：使用注解配置，异常通知/后置通知，会在最终通知执行之后执行</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/03/srping-AOP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/使用代理对象增强方法/" class="archive-article-date">
-  	<time datetime="2019-08-02T14:10:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/02/使用代理对象增强方法/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">使用动态代理增强方法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/使用代理对象增强方法/">使用动态代理增强方法</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/Spring-ioc容器解耦/" class="archive-article-date">
-  	<time datetime="2019-08-01T11:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/Spring-ioc容器解耦/">Spring-ioc容器解耦</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -267,8 +325,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
