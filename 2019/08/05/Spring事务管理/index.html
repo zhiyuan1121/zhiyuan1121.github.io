@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JDBC连接池和JDBCTemplate | Hexo</title>
+  <title>Spring事务控制 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据库连接池">
+  <meta name="description" content="1.JdbcTemplate概述">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JDBC连接池和JDBCTemplate">
-<meta property="og:url" content="http://yoursite.com/2019/07/26/JDBC连接池JDBCTemplate/index.html">
+<meta property="og:title" content="Spring事务控制">
+<meta property="og:url" content="http://yoursite.com/2019/08/05/Spring事务管理/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="数据库连接池">
+<meta property="og:description" content="1.JdbcTemplate概述">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-05T14:38:38.647Z">
+<meta property="og:updated_time" content="2019-08-05T14:39:49.270Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JDBC连接池和JDBCTemplate">
-<meta name="twitter:description" content="数据库连接池">
+<meta name="twitter:title" content="Spring事务控制">
+<meta name="twitter:description" content="1.JdbcTemplate概述">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,126 +152,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JDBC连接池JDBCTemplate" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring事务管理" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JDBC连接池和JDBCTemplate
+      Spring事务控制
     </h1>
   
 
         
-        <a href="/2019/07/26/JDBC连接池JDBCTemplate/" class="archive-article-date">
-  	<time datetime="2019-07-26T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
+        <a href="/2019/08/05/Spring事务管理/" class="archive-article-date">
+  	<time datetime="2019-08-05T13:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据库连接池"><a href="#数据库连接池" class="headerlink" title="数据库连接池"></a>数据库连接池</h1><a id="more"></a>
+        <p>1.JdbcTemplate概述</p>
+<a id="more"></a>
 
-<pre><code>1. 概念：其实就是一个容器(集合)，存放数据库连接的容器。
-        当系统初始化好后，容器被创建，容器中会申请一些连接对象，当用户来访问数据库时，从容器中获取连接对象，用户访问完之后，会将连接对象归还给容器。
-2. 好处：
-    1. 节约资源
-    2. 用户访问高效
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">	它是spring框架中提供的一个对象，是对原始Jdbc API对象的简单封装。spring框架为我们提供了很多的操作模板类。</span><br><span class="line">	操作关系型数据的：</span><br><span class="line">		JdbcTemplate</span><br><span class="line">		HibernateTemplate</span><br><span class="line">	操作nosql数据库的：</span><br><span class="line">		RedisTemplate</span><br><span class="line">	操作消息队列的：</span><br><span class="line">		JmsTemplate</span><br><span class="line">JdbcTemplate对象的创建可以通过set注入数据源，也可以通过构造方法注入数据源，构造方法中也是调用的set方法</span><br></pre></td></tr></table></figure>
 
-3. 实现：
-    1. 标准接口：DataSource   javax.sql包下的
-        1. 方法：
-            * 获取连接：getConnection()
-            * 归还连接：Connection.close()。如果连接对象Connection是从连接池中获取的，那么调用Connection.close()方法，则不会再关闭连接了。而是归还连接
+<p>2.配置spring内置数据源</p>
+<p>​    spring框架也提供了一个内置数据源，我们也可以使用spring的内置数据源，它就在spring-jdbc-5.0.2.REEASE.jar包中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"jdbc"</span> <span class="attr">class</span>=<span class="string">"org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"</span>&gt;</span>   </span><br><span class="line">     	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"locations"</span> <span class="attr">value</span>=<span class="string">"classpath:jdbc.properties"</span>&gt;</span>			<span class="tag">&lt;/<span class="name">property</span>&gt;</span>   </span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--配置数据源--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.driverClassName&#125;"</span>&gt;</span>		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-    2. 一般我们不去实现它，有数据库厂商来实现
-        1. C3P0：数据库连接池技术
-        2. Druid：数据库连接池实现技术，由阿里巴巴提供的
+<p>3.dbcTemplate的增删改查操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询,第一个参数为sql语句，第二个参数为RowMapper接口的一个实现类对象用于匹配列名与实体类属性，之后的多个参数用于对占位符赋值</span></span><br><span class="line">List&lt;Bate&gt; bates=jdbcTemplate.query(<span class="string">"select * from bate"</span>,(ResultSet rs,<span class="keyword">int</span> rowNum)-&gt;&#123;</span><br><span class="line">				Bate bate =<span class="keyword">new</span> Bate();</span><br><span class="line">				sfz.id(rs.getString(<span class="string">"id"</span>));</span><br><span class="line">				sfz.name(rs.getString(<span class="string">"name"</span>));</span><br><span class="line">				<span class="keyword">return</span> bate;</span><br><span class="line">			&#125;</span><br><span class="line">		);</span><br><span class="line">bates.stream().forEach(System.out::println);</span><br><span class="line"><span class="comment">//查询返回一个数据（聚合函数）第二个参数为方法值类型的字节码文件</span></span><br><span class="line">Integer conunt = jdbcTemplate.queryForObject(<span class="string">"select count(*) from bate where id &gt; ? "</span>,Integer.class,<span class="number">500</span>);</span><br><span class="line"><span class="comment">//添加</span></span><br><span class="line">jdbcTemplate.execute(<span class="string">"insert into bate values(?,?)"</span>,<span class="number">123</span>,<span class="string">"张三"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//修改删除</span></span><br><span class="line">jdbcTemplate.update(<span class="string">"delete from bate where id=?"</span>, <span class="number">123</span>);</span><br></pre></td></tr></table></figure>
 
+<p>编写dao层的时候为了简化代码可以让类继承JdbcDaoSupport类，在JdbcDaoSupport类中封装了JdbcTemplate属性以及其get，set方法</p>
+<h4 id="Spring中的事务控制"><a href="#Spring中的事务控制" class="headerlink" title="Spring中的事务控制"></a>Spring中的事务控制</h4><p>​    Spring中事务控制的API介绍</p>
+<p>​    1.PlatformTransactionManager接口，此接口是spring的事务管理器，它里面提供了我们常用的操作事务的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-获取事务状态信息</span><br><span class="line">	- TransactionStatus getTransaction(TransactionDefinition definition)</span><br><span class="line">-提交事务</span><br><span class="line">	- void commit(TransactionStatus status)</span><br><span class="line">-回滚事务</span><br><span class="line">	- void rollback(TransactionStatus status)</span><br></pre></td></tr></table></figure>
 
-4. C3P0：数据库连接池技术
-    * 步骤：
-        1. 导入jar包 (两个) c3p0-0.9.5.2.jar mchange-commons-java-0.2.12.jar ，
-            * 不要忘记导入数据库驱动jar包
-        2. 定义配置文件：
-            * 名称： c3p0.properties 或者 c3p0-config.xml
-            * 路径：直接将文件放在src目录下即可。
+<p>我们在开发中都是使用它的实现类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.jdbc.datasource.DataSourceTransactionManager</span><br></pre></td></tr></table></figure>
 
-        3. 创建核心对象 数据库连接池对象 ComboPooledDataSource
-        4. 获取连接： getConnection
-    * 代码：
-         //1.创建数据库连接池对象
-        DataSource ds  = new ComboPooledDataSource();//配置文件中可存在多个named-config标签用于存储不同的连接属性，传入name值获取不同的连接池对象，为空获取default-config标签下的连接属性
-        //2. 获取连接对象
-        Connection conn = ds.getConnection();
-5. Druid：数据库连接池实现技术，由阿里巴巴提供的
-    1. 步骤：
-        1. 导入jar包 druid-1.0.9.jar
-        2. 定义配置文件：
-            * 是properties形式的
-            * 可以叫任意名称，可以放在任意目录下
-        3. 加载配置文件。Properties
-        4. 获取数据库连接池对象：通过工厂来来获取  DruidDataSourceFactory
-        5. 获取连接：getConnection
-    * 代码：
-         //3.加载配置文件
-        Properties pro = new Properties();
-        InputStream is = DruidDemo.class.getClassLoader().getResourceAsStream(&quot;druid.properties&quot;);
-        pro.load(is);
-        //4.获取连接池对象
-        DataSource ds = DruidDataSourceFactory.createDataSource(pro);
-        //5.获取连接
-        Connection conn = ds.getConnection();                </code></pre><h2 id="Spring-JDBC"><a href="#Spring-JDBC" class="headerlink" title="Spring JDBC"></a>Spring JDBC</h2><pre><code>* Spring框架对JDBC的简单封装。提供了一个JDBCTemplate对象简化JDBC的开发
-* 步骤：
-    1. 导入jar包
-    2. 创建JdbcTemplate对象。依赖于数据源DataSource
-        * JdbcTemplate template = new JdbcTemplate(ds);
+<p>​    2.TransactionDefinition事务的信息对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">获取事务对象名称</span><br><span class="line">	- String getName()</span><br><span class="line">获取事务隔离级别</span><br><span class="line">	- int getIsolationLevel()</span><br><span class="line">获取事务传播行为</span><br><span class="line">	- int getPropagationBehavior()</span><br><span class="line">获取事务超时时间</span><br><span class="line">	- int getTimeout()</span><br><span class="line">获取事务是否只读</span><br><span class="line">	- boolean isReadOnly()</span><br></pre></td></tr></table></figure>
 
-    3. 调用JdbcTemplate的方法来完成CRUD的操作
-        * update():执行DML语句。增、删、改语句
-        * queryForMap():查询结果将结果集封装为map集合，将列名作为key，将值作为value 将这条记录封装为一个map集合
-            * 注意：这个方法查询的结果集长度只能是1
-        * queryForList():查询结果将结果集封装为list集合
-            * 注意：将每一条记录封装为一个Map集合，再将Map集合装载到List集合中
-        * query():查询结果，将结果封装为JavaBean对象
-            * query的参数：RowMapper
-                * 一般我们使用BeanPropertyRowMapper实现类。可以完成数据到JavaBean的自动封装
-                * new BeanPropertyRowMapper&lt;类型&gt;(类型.class)
-String sql = &quot;select * from emp&quot;;
-List&lt;Emp&gt; list = template.query(sql, new RowMapper&lt;Emp&gt;() {
-public Emp mapRow(ResultSet rs, int i) throws SQLException {
-    Emp emp = new Emp();
-    int id = rs.getInt(&quot;id&quot;);
-    String ename = rs.getString(&quot;ename&quot;);
-    int job_id = rs.getInt(&quot;job_id&quot;);
-    int mgr = rs.getInt(&quot;mgr&quot;);
-    Date joindate = rs.getDate(&quot;joindate&quot;);
-    double salary = rs.getDouble(&quot;salary&quot;);
-    double bonus = rs.getDouble(&quot;bonus&quot;);
-    int dept_id = rs.getInt(&quot;dept_id&quot;);
+<p>​    2.1.事务的隔离级别</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">事务隔离级反映事务提交并发访问时的处理态度</span><br><span class="line"></span><br><span class="line">- ISOL ATION DEFAULT</span><br><span class="line">	-默认级别，归属下列某一种</span><br><span class="line">- ISOL ATION READ_ UNCOMMITTED</span><br><span class="line">	-可以读取未提交数据</span><br><span class="line">- ISOLATION READ_ COMMITTED</span><br><span class="line">	- 只能读取已提交数据，解决脏读问题(Oracle默认级别)</span><br><span class="line">- ISOLATION REPEATABLE_ READ</span><br><span class="line">	- 是否读取其他事务提交修改后的数据，解决不可重复读问题(MySQL默认级别)</span><br><span class="line">- ISOL ATION SERIALIZABLE</span><br><span class="line">     - 是否读取其他事务提交添加后的数据，解决幻影读问题</span><br></pre></td></tr></table></figure>
 
-    emp.setId(id);
-    emp.setEname(ename);
-    emp.setJob_id(job_id);
-    emp.setMgr(mgr);
-    emp.setJoindate(joindate);
-    emp.setSalary(salary);
-    emp.setBonus(bonus);
-    emp.setDept_id(dept_id);
+<p>​    2.2.事务的传播行为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">REQUIRED:如果当前没有事务，就新建一个事务，如果已经存在一个事务中，加入到这个事务中。一般的选择（默认值）</span><br><span class="line">SUPPORTS:支持当前事务，如果当前没有事务，就以非事务方式执行（没有事务）</span><br><span class="line">MANDATORY：使用当前的事务，如果当前没有事务，就抛出异常</span><br><span class="line">REQUERS_NEW:新建事务，如果当前在事务中，把当前事务挂起。</span><br><span class="line">NOT_SUPPORTED:以非事务方式执行操作，如果当前存在事务，就把当前事务挂起</span><br><span class="line">NEVER:以非事务方式运行，如果当前存在事务，抛出异常</span><br><span class="line">NESTED:如果当前存在事务，则在嵌套事务内执行。如果当前没有事务，则执行REQUIRED类似的操作。</span><br></pre></td></tr></table></figure>
 
-    return emp;
-    }
-});
-        * queryForObject：查询结果，将结果封装为对象
-            * 一般用于聚合函数的查询
-            Long total = template.queryForObject(sql, Long.class);</code></pre><p>c3p0配置文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">c3p0-config</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 使用默认的配置读取连接池对象 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">default-config</span>&gt;</span></span><br><span class="line">  	<span class="comment">&lt;!--  连接参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span>&gt;</span>com.microsoft.sqlserver.jdbc.SQLServerDriver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span>&gt;</span>jdbc:sqlserver://127.0.0.1:1433;DatabaseName=bate<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span>sa<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 连接池参数 --&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 初始连接数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 最大连接数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span>&gt;</span>10<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 超时时间 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span>&gt;</span>3000<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">default-config</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">named-config</span> <span class="attr">name</span>=<span class="string">"otherc3p0"</span>&gt;</span> </span><br><span class="line">    <span class="comment">&lt;!--  连接参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClass"</span>&gt;</span>com.microsoft.sqlserver.jdbc.SQLServerDriver<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"jdbcUrl"</span>&gt;</span>jdbc:sqlserver://127.0.0.1:1433;DatabaseName=bate<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"user"</span>&gt;</span>sa<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span>123456<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- 连接池参数 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialPoolSize"</span>&gt;</span>5<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxPoolSize"</span>&gt;</span>8<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"checkoutTimeout"</span>&gt;</span>1000<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">named-config</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">c3p0-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>​    2.3.超时时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">默认值是-1，没有超时限制。如果有，以秒为单位进行设置。</span><br></pre></td></tr></table></figure>
 
-<p>Druid配置文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver</span><br><span class="line">url=jdbc:sqlserver://127.0.0.1:1433;DatabaseName=bate</span><br><span class="line">username=sa</span><br><span class="line">password=123456</span><br><span class="line">initialSize=5</span><br><span class="line">maxActive=20</span><br><span class="line">maxWait=3000</span><br></pre></td></tr></table></figure>
+<p>​    2.4.是否是只读事务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">建议查询时设置为只读。</span><br></pre></td></tr></table></figure>
 
+<p>3.TransactionStatus此接口提供的是事务具体的运行状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- 刷新事务</span><br><span class="line">	- void flush()</span><br><span class="line">- 获取是否存在存储点</span><br><span class="line">	- boolean hasSavepoint()</span><br><span class="line">- 获取事务是否完成</span><br><span class="line">	- boolean isCompleted()</span><br><span class="line">- 获取事务是否为新的事务</span><br><span class="line">	- boolean isNewTransaction()</span><br><span class="line">- 获取事务是否回滚</span><br><span class="line">	- boolean isRollbackOnly()</span><br><span class="line">- 设置事务回滚</span><br><span class="line">	- void setRollbackOnly()</span><br></pre></td></tr></table></figure>
+
+<h4 id="事务控制"><a href="#事务控制" class="headerlink" title="事务控制"></a>事务控制</h4><p>pom.xml需要导入的坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-context<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">   <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   	<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.0.2.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.microsoft.sqlserver<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mssql-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>6.4.0.jre8<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjweaver<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.8.7<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>配置文件:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag"><span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans </span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/aop </span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/aop/spring-aop.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/tx</span></span></span><br><span class="line"><span class="tag"><span class="string">http://www.springframework.org/schema/tx/spring-tx.xsd"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 数据源，JdbcTemplate对象，各类bean配置 --&gt;</span></span><br><span class="line">    .......</span><br><span class="line"><span class="comment">&lt;!--配置一个事务管理器--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--注入DataSource --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--事务的配置 transaction-manager事务管理器id--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">"txAdvice"</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">		tx:method属性</span></span><br><span class="line"><span class="comment">        name：指定方法名称*表示通配，find*表示所有以find开头的</span></span><br><span class="line"><span class="comment">        read-only：是否是只读事务。默认false，不只读。</span></span><br><span class="line"><span class="comment">        isolation：指定事务的隔离级别。默认值是使用数据库的默认隔离级别。</span></span><br><span class="line"><span class="comment">        propagation：指定事务的传播行为。</span></span><br><span class="line"><span class="comment">        timeout：指定超时时间。默认值为：-1。永不超时。</span></span><br><span class="line"><span class="comment">        rollback-for：用于指定一个异常，当执行产生该异常时，事务回滚。产生其他异常，事务不回滚。没有默认值，任何异常都回滚。</span></span><br><span class="line"><span class="comment">        no-rollback-for：用于指定一个异常，当产生该异常时，事务不回滚，产生其他异常时，事务回滚。没有默认值，任何异常都回滚。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"*"</span> <span class="attr">read-only</span>=<span class="string">"false"</span> <span class="attr">propagation</span>=<span class="string">"REQUIRED"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">"find*"</span> <span class="attr">read-only</span>=<span class="string">"true"</span> <span class="attr">propagation</span>=<span class="string">"SUPPORTS"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 切入点表达式以及切入点与事务绑定 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">expression</span>=<span class="string">"execution(* com.sfz.service.*.*(..))"</span> <span class="attr">id</span>=<span class="string">"allDaoMethod"</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:pointcut</span>&gt;</span></span><br><span class="line">  		<span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">"txAdvice"</span> <span class="attr">pointcut-ref</span>=<span class="string">"allDaoMethod"</span>&gt;</span>			<span class="tag">&lt;/<span class="name">aop:advisor</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="以注解方式实现"><a href="#以注解方式实现" class="headerlink" title="以注解方式实现"></a>以注解方式实现</h5><p>1.在xml中配置一个事务管理器开启对注解的支持</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> 				<span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!--注入DataSource --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">"transactionManager"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>2.给需要事务管理的类添加@Transactional注解属性与tx:method属性一直，也可以给类中的方法单独添加优先级高于给类添加的。</p>
+<p>完全使用注解：给配置类添加EnableTransactionManagement注解</p>
 
       
 
@@ -330,7 +279,7 @@ public Emp mapRow(ResultSet rs, int i) throws SQLException {
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/26/JDBC连接池JDBCTemplate/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/05/Spring事务管理/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -344,18 +293,9 @@ public Emp mapRow(ResultSet rs, int i) throws SQLException {
   
 <nav id="article-nav">
   
-    <a href="/2019/07/26/Mybatis/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Mybatis基本使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/23/多表和事务/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">多表和事务</div>
+    <a href="/2019/08/03/srping-AOP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">srping-AOP</div>
       <i class="icon-circle-right"></i>
     </a>
   
