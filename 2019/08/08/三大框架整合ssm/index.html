@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Ajax | Hexo</title>
+  <title>三大框架整合ssm | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ajax：Asynchronous JavaScript and XML，就是用JavaScript执行异步网络请求，传统请求中页面向服务器发送请求，服务器接收数据并放回一个新的页面给客户端，往往新的页面与之前的页面有很大部分的重复代码，这样浪费了很多的带宽。Ajax应用可以仅向服务器获取需要的数据，并在客户端采用JavaScript处理这些数据，这样服务器和客户端交换的数据大大减少，减少服务器压">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ajax">
-<meta property="og:url" content="http://yoursite.com/2019/07/16/Ajax/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="三大框架整合ssm">
+<meta property="og:url" content="http://yoursite.com/2019/08/08/三大框架整合ssm/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Ajax：Asynchronous JavaScript and XML，就是用JavaScript执行异步网络请求，传统请求中页面向服务器发送请求，服务器接收数据并放回一个新的页面给客户端，往往新的页面与之前的页面有很大部分的重复代码，这样浪费了很多的带宽。Ajax应用可以仅向服务器获取需要的数据，并在客户端采用JavaScript处理这些数据，这样服务器和客户端交换的数据大大减少，减少服务器压">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-26T04:09:29.265Z">
+<meta property="og:updated_time" content="2019-08-08T08:04:38.900Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ajax">
-<meta name="twitter:description" content="Ajax：Asynchronous JavaScript and XML，就是用JavaScript执行异步网络请求，传统请求中页面向服务器发送请求，服务器接收数据并放回一个新的页面给客户端，往往新的页面与之前的页面有很大部分的重复代码，这样浪费了很多的带宽。Ajax应用可以仅向服务器获取需要的数据，并在客户端采用JavaScript处理这些数据，这样服务器和客户端交换的数据大大减少，减少服务器压">
+<meta name="twitter:title" content="三大框架整合ssm">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -152,98 +149,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Ajax" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-三大框架整合ssm" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Ajax
+      三大框架整合ssm
     </h1>
   
 
         
-        <a href="/2019/07/16/Ajax/" class="archive-article-date">
-  	<time datetime="2019-07-16T13:20:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
+        <a href="/2019/08/08/三大框架整合ssm/" class="archive-article-date">
+  	<time datetime="2019-08-08T08:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Ajax：Asynchronous JavaScript and XML，就是用JavaScript执行异步网络请求，传统请求中页面向服务器发送请求，服务器接收数据并放回一个新的页面给客户端，往往新的页面与之前的页面有很大部分的重复代码，这样浪费了很多的带宽。Ajax应用可以仅向服务器获取需要的数据，并在客户端采用JavaScript处理这些数据，这样服务器和客户端交换的数据大大减少，减少服务器压力，提高访问速度。</p>
-<a id="more"></a>
-
-<h4 id="Ajax的实现"><a href="#Ajax的实现" class="headerlink" title="Ajax的实现"></a>Ajax的实现</h4><p>Ajax的Servlet需要通过PrintWriter对象回传数据</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PrintWriter out = request.getWriter();</span><br><span class="line">out.print(<span class="string">"回传数据"</span>);</span><br><span class="line">out.close();</span><br></pre></td></tr></table></figure>
-
-<p>前端JavaScript通过XMLHttpRequest对象实现</p>
-<p>XMLHttpRequest对象实现Ajax主要方法：</p>
-<p>​    open(提交方式(get/post),服务器地址(<servlet-name>),true):与服务器建立连接</servlet-name></p>
-<p>​    send(提交的数据):</p>
-<p>​        get： send(null);</p>
-<p>​        post: send(“key”+value);</p>
-<p>​    setRequestHeader(header,value):设置请求头</p>
-<p>​        get:不需要设置该方法</p>
-<p>​        post:需要设置</p>
-<p>​            1.如果请求元素中包含了文件上传:</p>
-<p>​                setRequestHeader(“Content-Type”,”multipart/form-data”)</p>
-<p>​            2.不包含文件上传</p>
-<p>​                setRequestHeader(“Content-Type”, “application/x-www-form-urlencoded”)</p>
-<p>XMLHttpRequest对象的属性：</p>
-<p>​    readyState:请求状态</p>
-<p>​    status:<a href="https://zhiyuan1121.github.io/2019/06/30/%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81/" target="_blank" rel="noopener">响应状态</a></p>
-<p>​    请求状态表，只有4表示请求正常</p>
-<table>
-<thead>
-<tr>
-<th align="center">状态值</th>
-<th align="left">简介</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0</td>
-<td align="left">表示XMLHttpRequest对象没有初始化</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="left">表示XMLHttpRequest对象开始发送请求，已经执行了open()方法并完成了相关资源的准备</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="left">表示XMLHttpRequest对象已将请求发送完毕，已经执行了send()方法来发送请求，但是还没有收到响应</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="left">表示XMLHttpRequest对象开始读取响应信息，已经接收到HTTP响应的头部信息，但是还没有将响应体接收完毕</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="left">表示XMLHttpRequest对象将响应信息全部读取完毕</td>
-</tr>
-</tbody></table>
-<p>​    onreadystatechange:回调函数 处理服务器响应的数据</p>
-<p>具体代码实现</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"> &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">register</span>(<span class="params"></span>)</span>&#123;<span class="comment">//给对应元素绑定的点击事件</span></span><br><span class="line">		<span class="keyword">var</span> iphon = <span class="built_in">document</span>.getElementById(<span class="string">"iphon"</span>).value;<span class="comment">//获取文本框的值</span></span><br><span class="line">		<span class="comment">//通过ajax异步访问服务器</span></span><br><span class="line">		xmlHttpRequest = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//xmlHttpRequest.open("post","ajax",true);//post建立连接</span></span><br><span class="line">		<span class="comment">//xmlHttpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");//post方式设置请求头</span></span><br><span class="line">		<span class="comment">//xmlHttpRequest.send("iphon="+iphon);//设置参数 key，value</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">		xmlHttpRequest.open(<span class="string">"get"</span>,<span class="string">"ajax?iphon="</span>+iphon,<span class="literal">true</span>);</span><br><span class="line">     	<span class="comment">//get建立连接填写参数</span></span><br><span class="line">		</span><br><span class="line">		xmlHttpRequest.send(<span class="literal">null</span>);<span class="comment">//get方式不需在此传值</span></span><br><span class="line">		xmlHttpRequest.onreadystatechange=callBack;<span class="comment">//设置回调函数</span></span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//定义回调函数接受客户端返回值</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">callBack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(xmlHttpRequest.readyState==<span class="number">4</span>&amp;&amp;xmlHttpRequest.status==<span class="number">200</span>)&#123;</span><br><span class="line">             <span class="comment">//在响应请求都正常时处理</span></span><br><span class="line">			<span class="keyword">var</span> data=xmlHttpRequest.responseText;<span class="comment">//接收服务端返回值为String格式</span></span><br><span class="line">				alert(data);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="jQuery实现"><a href="#jQuery实现" class="headerlink" title="jQuery实现"></a><a href="https://api.jquery.com/" target="_blank" rel="noopener">jQuery</a>实现</h4><p>jQuery需要导入js库，导入官方在线库</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://code.jquery.com/jquery-3.4.1.min.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>jQuery的实现方式有很多种实现也比js简单很多，常用的有一下几种方式</p>
-<p>​    1.ajax</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">register</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> $iphon=$(<span class="string">"#iphon"</span>).val();<span class="comment">//获取数据</span></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">	url:<span class="string">"ajax"</span>,<span class="comment">//服务器地址</span></span><br><span class="line">	请求方式:<span class="string">"post"</span>,<span class="comment">//请求方式get/post其他配置都一样</span></span><br><span class="line">	data:<span class="string">"iphon="</span>+$iphon,<span class="comment">//传递表单可以以json方式传递 &#123;"iphon":$iphon&#125;</span></span><br><span class="line">	success:<span class="function"><span class="keyword">function</span>(<span class="params">result,testStatus</span>)//执行完成没有异常调用该函数</span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line"> 		alert(<span class="string">"result"</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	error:<span class="function"><span class="keyword">function</span>(<span class="params">xhr,errorMessage e</span>)</span>&#123;<span class="comment">//发送异常调用该方法</span></span><br><span class="line">		alert(<span class="string">"异常"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line">&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>2.get/post</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.<span class="keyword">get</span>(//可选$.post 由于<span class="keyword">get</span>/post没有key所以参数必须严格按照顺序</span><br><span class="line">	  	"ajax",//服务器地址</span><br><span class="line">	  	"iphon="+$iphon,//参数</span><br><span class="line">	  	function(result,testStatus)//回调函数</span><br><span class="line">	  		&#123;</span><br><span class="line">		  		alert(result);</span><br><span class="line">	  		&#125;,</span><br><span class="line">		<span class="string">"text"</span><span class="comment">//预期返回值类型 "xml" "json" "text"</span></span><br><span class="line">	  	);</span><br></pre></td></tr></table></figure>
-
-<p>3.load</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"#avl"</span>).load(</span><br><span class="line">        <span class="comment">//前面的括号为某个元素，若不绑定回调函数 服务器响应的数据会直接给该元素</span></span><br><span class="line">	<span class="string">"ajax"</span>,<span class="comment">//服务器地址</span></span><br><span class="line">	<span class="string">"iphon="</span>+$iphon<span class="comment">//参数</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-
-<p>4.getJSON</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(</span><br><span class="line">	  <span class="string">"ajax"</span>,</span><br><span class="line">	  &#123;<span class="string">"iphon"</span>:$iphon&#125;,</span><br><span class="line">	  <span class="function"><span class="keyword">function</span>(<span class="params">result,testStatus</span>)</span></span><br><span class="line"><span class="function">	  		</span>&#123;</span><br><span class="line">	  			alert(result);</span><br><span class="line">	  		&#125;</span><br><span class="line">	  );<span class="comment">//该方法的服务器响应格式为JSON</span></span><br></pre></td></tr></table></figure>
-
-
+        
       
 
       
@@ -301,7 +227,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/16/Ajax/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/08/08/三大框架整合ssm/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -315,18 +241,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/20/MySQL基础/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MySQL基础
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/14/EL与JSTL/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">EL与JSTL</div>
+    <a href="/2019/08/08/SpringMVC-二/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">SpringMVC(二)</div>
       <i class="icon-circle-right"></i>
     </a>
   
