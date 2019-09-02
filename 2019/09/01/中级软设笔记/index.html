@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>中级软设笔记 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/2/index.html">
+  <meta name="description" content="码制   码制 说明    原码 直接转二进制数最高位为符号位0表示正数1表示负数   反码 正数反码和源码相同，负数为源码除符号位外取反   补码 正数补码与反码相同，负数为反码+1。使用补码做加法可以得到正确的结果   移码 在补码的基础上符号为取反   数值表示范围   码制 定点整数（无小数点） 定点小数（小数点在符号位后面）    原码 -(2^(n-1)-1)+(2^(n-1)-1)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中级软设笔记">
+<meta property="og:url" content="http://yoursite.com/2019/09/01/中级软设笔记/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="码制   码制 说明    原码 直接转二进制数最高位为符号位0表示正数1表示负数   反码 正数反码和源码相同，负数为源码除符号位外取反   补码 正数补码与反码相同，负数为反码+1。使用补码做加法可以得到正确的结果   移码 在补码的基础上符号为取反   数值表示范围   码制 定点整数（无小数点） 定点小数（小数点在符号位后面）    原码 -(2^(n-1)-1)+(2^(n-1)-1)">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-02T05:40:26.669Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="中级软设笔记">
+<meta name="twitter:description" content="码制   码制 说明    原码 直接转二进制数最高位为符号位0表示正数1表示负数   反码 正数反码和源码相同，负数为源码除符号位外取反   补码 正数补码与反码相同，负数为反码+1。使用补码做加法可以得到正确的结果   移码 在补码的基础上符号为取反   数值表示范围   码制 定点整数（无小数点） 定点小数（小数点在符号位后面）    原码 -(2^(n-1)-1)+(2^(n-1)-1)">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,295 +152,327 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-中级软设笔记" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      中级软设笔记
+    </h1>
+  
+
+        
+        <a href="/2019/09/01/中级软设笔记/" class="archive-article-date">
+  	<time datetime="2019-09-01T15:42:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="码制"><a href="#码制" class="headerlink" title="码制"></a>码制</h4><table>
+<thead>
+<tr>
+<th>码制</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原码</td>
+<td>直接转二进制数最高位为符号位0表示正数1表示负数</td>
+</tr>
+<tr>
+<td>反码</td>
+<td>正数反码和源码相同，负数为源码除符号位外取反</td>
+</tr>
+<tr>
+<td>补码</td>
+<td>正数补码与反码相同，负数为反码+1。使用补码做加法可以得到正确的结果</td>
+</tr>
+<tr>
+<td>移码</td>
+<td>在补码的基础上符号为取反</td>
+</tr>
+</tbody></table>
+<h4 id="数值表示范围"><a href="#数值表示范围" class="headerlink" title="数值表示范围"></a>数值表示范围</h4><table>
+<thead>
+<tr>
+<th>码制</th>
+<th>定点整数（无小数点）</th>
+<th>定点小数（小数点在符号位后面）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>原码</td>
+<td>-(2^(n-1)-1)<del>+(2^(n-1)-1)   (1111</del>0111)</td>
+<td>-(1-2^-(n-1))<del>+(1-2^-(n-1))   (1.111</del>0.111)</td>
+</tr>
+<tr>
+<td>反码</td>
+<td>-(2^(n-1)-1)<del>+(2^(n-1)-1)   (1111</del>0111)</td>
+<td>-(1-2^-(n-1))<del>+(1-2^-(n-1))   (1.111</del>0.111)</td>
+</tr>
+<tr>
+<td>补码</td>
+<td>-2^(n-1)~+(2^(n-1)-1)   -16的补码为1000(人为规定)</td>
+<td>-1~+(1-2^-(n-1))   -1的补码时1.000(人为规定)</td>
+</tr>
+<tr>
+<td>移码</td>
+<td>-2^(n-1)~+(2^(n-1)-1)</td>
+<td>-1~+(1-2^-(n-1))</td>
+</tr>
+</tbody></table>
+<h4 id="浮点数的表示"><a href="#浮点数的表示" class="headerlink" title="浮点数的表示"></a>浮点数的表示</h4><h6 id="N-尾数-基数-指数"><a href="#N-尾数-基数-指数" class="headerlink" title="N=尾数*基数^指数"></a>N=尾数*基数^指数</h6><p>运算过程：对阶-&gt;尾数计算-&gt;结果格式化</p>
+<ul>
+<li>尾数一般用补码，指数用移码</li>
+<li>指数的尾数决定数表示的范围，位数越大范围越大</li>
+<li>尾数的位数决定数的有效精度，位数越多精度越高</li>
+<li>对阶时，小数向大数看齐，即小数算数尾数右移</li>
+</ul>
+<p>在计算机中的存储格式</p>
+<table>
+<thead>
+<tr>
+<th align="center">阶符</th>
+<th align="center">阶码</th>
+<th align="center">数符</th>
+<th align="center">数码</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">阶码正负，指数的符号位</td>
+<td align="center">阶码</td>
+<td align="center">尾数的符号位</td>
+<td align="center">尾数</td>
+</tr>
+</tbody></table>
+<h4 id="计算机的结构"><a href="#计算机的结构" class="headerlink" title="计算机的结构"></a>计算机的结构</h4><ul>
+<li>主机<ul>
+<li>主存储器 RAM</li>
+<li>CPU<ul>
+<li>运算器<ol>
+<li>算数逻辑单元 ALU：数据的算术和逻辑运算</li>
+<li>累加寄存器 AC：通用寄存器，为ALU提供一个工作区，用于暂存数据</li>
+<li>数据缓冲寄存器 DR：写内存时，暂存指令或数据</li>
+<li>状态条件寄存器 PSW ：存状态标志与控制标志(有时会将该部件划分到控制器中，不首先考虑排除)</li>
+</ol>
+</li>
+<li>控制器<ol>
+<li>程序计数器 PC：存储下一条要执行的指令地址</li>
+<li>指令寄存器 IR：存储即将执行的指令</li>
+<li>指令译码器 ID：对指令中的操作码字段进行分析解析</li>
+<li>时序部件：提供时序控制信号</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>总线<ul>
+<li>控制总线 CB</li>
+<li>数据总线 DB</li>
+<li>地址或指令总线 AB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>外设<ul>
+<li>辅助存储器</li>
+<li>输入设备I</li>
+<li>输出设备O</li>
+</ul>
+</li>
+</ul>
+<h4 id="Flynn计算机体系结构分类"><a href="#Flynn计算机体系结构分类" class="headerlink" title="Flynn计算机体系结构分类"></a>Flynn计算机体系结构分类</h4><p>​    (I:指令系统    D：数据流    S：单    M：多)</p>
+<table>
+<thead>
+<tr>
+<th align="center">体系结构类型</th>
+<th align="center">结构</th>
+<th align="center">关键特性</th>
+<th align="center">代表</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">单指令流单数据流<br>SISD</td>
+<td align="center">控制部分：一个<br>处理器：一个<br>主存模块：一个</td>
+<td align="center"></td>
+<td align="center">单处理器系统</td>
+</tr>
+<tr>
+<td align="center">单指令流多数据流<br>SIMD</td>
+<td align="center">控制部分：一个<br>处理器：多个<br>主存模块：多个</td>
+<td align="center">各处理器以异步的形式执行同一条指令</td>
+<td align="center">并列处理器<br>阵列处理器<br>超级向量处理机</td>
+</tr>
+<tr>
+<td align="center">多指令流单数据流<br>MISD</td>
+<td align="center">控制部分：多个<br>处理器：一个<br>主存模块：多个</td>
+<td align="center">被证明不可能，至少是不实际</td>
+<td align="center">目前没有，有关文献称流水线计算机为此类</td>
+</tr>
+<tr>
+<td align="center">多指令流多数据流<br>MIMD</td>
+<td align="center">控制部分：多个<br>处理器：多个<br>主存模块：多个</td>
+<td align="center">能够实现作业、任务、指令等各级全面并行</td>
+<td align="center">多处理机系统<br>多计算机</td>
+</tr>
+</tbody></table>
+<h4 id="指令基本概念"><a href="#指令基本概念" class="headerlink" title="指令基本概念"></a>指令基本概念</h4><p>一条指令就是机器语言的一个语句，它是一组有意义的二进制代码，分为<strong>操作码</strong>和<strong>地址码</strong>操作码码在前地址码在后，从地址结构的角度可以分为三地址指令、二地址指令、一地址指令和零地址指令。</p>
+<h4 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h4><ul>
+<li>立即寻址：操作数直接在指令中，速度快，灵活性差。（常量）</li>
+<li>直接寻址：指令存放的是操作数在内存中的地址。（&amp;变量）</li>
+<li>间接寻址：指令中存放的是一个地址，这个地址对应的内容是操作数的地址。（变量1=&amp;变量2 存放的为&amp;变量1）</li>
+<li>寄存器寻址：寄存器存放操作数。</li>
+<li>寄存器间接寻址：寄存器存放的是操作数的地址。</li>
+</ul>
+<p>CISC与RISC</p>
+<table>
+<thead>
+<tr>
+<th>指令系统类型</th>
+<th>指令</th>
+<th>寻址方式</th>
+<th>实现方式</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CISC（复杂)</td>
+<td>数量多，使用频率差别大，可变长格式</td>
+<td>支持多种</td>
+<td>微程序控制术（微码）</td>
+<td>研制周期长</td>
+</tr>
+<tr>
+<td>RISC（精简）</td>
+<td>数量少，使用频率接近，定长格式，大部分为单周期指令，操作寄存器，只有Load/Store操作内存</td>
+<td>支持方式少</td>
+<td>增加了通用寄存器；硬布线逻辑控制为主适合采用流水线</td>
+<td>优化编译，有效支持高级语言</td>
+</tr>
+</tbody></table>
+<p>CISC与RISC的比较</p>
+<p>​    指令数量，指令夫人使用频率，寻址方式，寄存器，流水线支持，高级语言支持</p>
+<p>​    CISC：复杂，指令数量多，频率差别大，多寻址</p>
+<p>​    RISC：精简，指令数量少，操作寄存器，单周期，少寻址，多通用寄存器，流水线</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/springmvc/" class="archive-article-date">
-  	<time datetime="2019-08-07T12:32:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/springmvc/">SpringMVC</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/01/中级软设笔记/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/Spring事务管理/" class="archive-article-date">
-  	<time datetime="2019-08-05T13:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/09/02/io/day08【File类、递归】/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/30/并发/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">并发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/Spring事务管理/">Spring事务控制</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/srping-AOP/" class="archive-article-date">
-  	<time datetime="2019-08-03T06:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/srping-AOP/">srping-AOP</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/使用代理对象增强方法/" class="archive-article-date">
-  	<time datetime="2019-08-02T14:10:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/使用代理对象增强方法/">使用动态代理增强方法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/Spring-ioc容器解耦/" class="archive-article-date">
-  	<time datetime="2019-08-01T11:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/Spring-ioc容器解耦/">Spring-ioc容器解耦</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis-三/" class="archive-article-date">
-  	<time datetime="2019-07-27T08:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis-三/">Mybatis(三)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis二/" class="archive-article-date">
-  	<time datetime="2019-07-27T03:52:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis二/">Mybatis(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/Mybatis/" class="archive-article-date">
-  	<time datetime="2019-07-26T12:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/Mybatis/">Mybatis基本使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/JDBC连接池JDBCTemplate/" class="archive-article-date">
-  	<time datetime="2019-07-26T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/JDBC连接池JDBCTemplate/">JDBC连接池和JDBCTemplate</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/23/多表和事务/" class="archive-article-date">
-  	<time datetime="2019-07-23T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/23/多表和事务/">多表和事务</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><a class="extend next" rel="next" href="/archives/2019/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +496,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

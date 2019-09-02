@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>io流 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/2/index.html">
+  <meta name="description" content="File类 java.io.File 类是文件和目录路径名的抽象表示，主要用于文件和目录的创建、查找和删除等操作。一个File对象代表硬盘中实际存在的一个文件或者目录。无论该路径下是否存在文件或者目录，都不影响File对象的创建。  构造方法 public File(String pathname) ：通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 public File(S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="io流">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/io流/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="File类 java.io.File 类是文件和目录路径名的抽象表示，主要用于文件和目录的创建、查找和删除等操作。一个File对象代表硬盘中实际存在的一个文件或者目录。无论该路径下是否存在文件或者目录，都不影响File对象的创建。  构造方法 public File(String pathname) ：通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 public File(S">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-02T14:50:01.715Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="io流">
+<meta name="twitter:description" content="File类 java.io.File 类是文件和目录路径名的抽象表示，主要用于文件和目录的创建、查找和删除等操作。一个File对象代表硬盘中实际存在的一个文件或者目录。无论该路径下是否存在文件或者目录，都不影响File对象的创建。  构造方法 public File(String pathname) ：通过将给定的路径名字符串转换为抽象路径名来创建新的 File实例。 public File(S">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,295 +152,326 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-io流" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      io流
+    </h1>
+  
+
+        
+        <a href="/2019/09/02/io流/" class="archive-article-date">
+  	<time datetime="2019-09-02T09:01:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><h4 id="File类"><a href="#File类" class="headerlink" title="File类"></a>File类</h4><ul>
+<li><p><code>java.io.File</code> 类是文件和目录路径名的抽象表示，主要用于文件和目录的创建、查找和删除等操作。一个File对象代表硬盘中实际存在的一个文件或者目录。无论该路径下是否存在文件或者目录，都不影响File对象的创建。</p>
+</li>
+<li><h5 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>public File(String pathname)</code> ：通过将给定的<strong>路径名字符串</strong>转换为抽象路径名来创建新的 File实例。</li>
+<li><code>public File(String parent, String child)</code> ：从<strong>父路径名字符串和子路径名字符串</strong>创建新的 File实例。</li>
+<li><code>public File(File parent, String child)</code> ：从<strong>父抽象路径名和子路径名字符串</strong>创建新的 File实例。</li>
+</ul>
+</li>
+<li><h5 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h5><ul>
+<li><code>public String getAbsolutePath()</code> ：返回此File的绝对路径名字符串。</li>
+<li><code>public String getPath()</code> ：返回构造函数中的路径不包含文件名。 </li>
+<li><code>public String getName()</code>  ：返回由此File表示的文件或目录的名称。  </li>
+<li><code>public long length()</code>  ：返回由此File表示的文件的长度，目录返回值不固定。 </li>
+</ul>
+</li>
+<li><h5 id="判断方法"><a href="#判断方法" class="headerlink" title="判断方法"></a>判断方法</h5><ul>
+<li><code>public boolean exists()</code> ：此File表示的文件或目录是否实际存在。</li>
+<li><code>public boolean isDirectory()</code> ：此File表示的是否为目录,目录不存在为false。</li>
+<li><code>public boolean isFile()</code> ：此File表示的是否为文件，文件不存在为false。</li>
+</ul>
+</li>
+<li><h5 id="创建删除功能"><a href="#创建删除功能" class="headerlink" title="创建删除功能"></a>创建删除功能</h5><ul>
+<li><code>public boolean createNewFile()</code> ：当且仅当具有该名称的文件尚不存在时，创建一个新的空文件，创建成功返回true，创建失败（文件已存在）返回false，父路径不存在会抛出<code>java.io.IOException</code>异常。 </li>
+<li><code>public boolean delete()</code> ：删除由此File表示的文件或目录，删除成功返回true，删除失败（文件不存在）返回false。  </li>
+<li><code>public boolean mkdir()</code> ：创建由此File表示的目录，创建成功返回true，创建失败（目录已存在，父目录不存在）返回false。</li>
+<li><code>public boolean mkdirs()</code> ：创建由此File表示的目录，包括任何必需但不存在的父目录，创建成功返回true，创建失败（目录已存在）返回false。</li>
+</ul>
+</li>
+<li><h5 id="目录遍历"><a href="#目录遍历" class="headerlink" title="目录遍历"></a>目录遍历</h5><ul>
+<li><p><code>public String[] list()</code> ：返回一个String数组，表示该File目录中的所有子文件或目录。</p>
+</li>
+<li><p><code>public File[] listFiles()</code> ：返回一个File数组，表示该File目录中的所有的子文件或目录。</p>
+</li>
+</ul>
+</li>
+<li><h5 id="文件过滤器接口"><a href="#文件过滤器接口" class="headerlink" title="文件过滤器接口"></a>文件过滤器接口</h5><p><code>java.io.FileFilter</code>是一个接口，是File的过滤器。 该接口的对象可以传递给File类的<code>listFiles(FileFilter)</code> 作为参数， 接口中只有一个方法。</p>
+<p><code>boolean accept(File pathname)</code> ：测试pathname是否应该包含在当前File目录中，符合则返回true。</p>
+<p>接口中只有一个方法可以使用Lambda优化，实现代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FileGet</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"src"</span>);</span><br><span class="line">        File[] files1 = file.listFiles(f-&gt;&#123;</span><br><span class="line">            <span class="keyword">return</span> f.getName().endsWith(<span class="string">".txt"</span>);</span><br><span class="line">            <span class="comment">//返回true会存入files1集合中</span></span><br><span class="line">        &#125;);</span><br><span class="line">        Arrays.stream(files1).forEach(System.out::println);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><h3 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h3><ul>
+<li><h5 id="IO流的分类"><a href="#IO流的分类" class="headerlink" title="IO流的分类"></a>IO流的分类</h5><ul>
+<li>根据数据的流向分为：<strong>输入流</strong>和<strong>输出流</strong>。<ul>
+<li><strong>输入流</strong> ：把数据从<code>其他设备</code>上读取到<code>内存</code>中的流。 </li>
+<li><strong>输出流</strong> ：把数据从<code>内存</code> 中写出到<code>其他设备</code>上的流。</li>
+</ul>
+</li>
+<li>格局数据的类型分为：<strong>字节流</strong>和<strong>字符流</strong>。<ul>
+<li><strong>字节流</strong> ：以字节为单位，读写数据的流。</li>
+<li><strong>字符流</strong> ：以字符为单位，读写数据的流。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="顶级父类"><a href="#顶级父类" class="headerlink" title="顶级父类"></a>顶级父类</h5><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><strong>输入流</strong></th>
+<th align="center">输出流</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>字节流</strong></td>
+<td align="center">字节输入流<br><strong>InputStream</strong></td>
+<td align="center">字节输出流<br><strong>OutputStream</strong></td>
+</tr>
+<tr>
+<td align="center"><strong>字符流</strong></td>
+<td align="center">字符输入流<br><strong>Reader</strong></td>
+<td align="center">字符输出流<br><strong>Writer</strong></td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><h3 id="字节流"><a href="#字节流" class="headerlink" title="字节流"></a>字节流</h3><p>一切文件数据(文本、图片、视频等)在存储时，都是以二进制数字的形式保存，都一个一个的字节，那么传输时一样如此。所以，字节流可以传输任意文件数据。在操作流的时候，我们要时刻明确，无论使用什么样的流对象，底层传输的始终为二进制数据。</p>
+<ul>
+<li><h5 id="字节输出流【OutputStream】"><a href="#字节输出流【OutputStream】" class="headerlink" title="字节输出流【OutputStream】"></a>字节输出流【OutputStream】</h5><p><code>java.io.OutputStream</code>抽象类是表示字节输出流的所有类的超类，将指定的字节信息写出到目的地。它定义了字节输出流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code> ：关闭此输出流并释放与此流相关联的任何系统资源，流操作<strong>结束后</strong>，<strong>一定</strong>要调用该方法释放系统资源。  </li>
+<li><code>public void flush()</code> ：刷新此输出流并强制任何缓冲的输出字节被写出。  </li>
+<li><code>public void write(byte[] b)</code>：将 b.length字节从指定的字节数组写入此输出流。  </li>
+<li><code>public void write(byte[] b, int off, int len)</code> ：从指定的字节数组写入 len字节，从偏移量 off开始输出到此输出流。  </li>
+<li><code>public abstract void write(int b)</code> ：将指定的字节输出流。</li>
+</ul>
+</li>
+<li><h5 id="FileOutputStream类"><a href="#FileOutputStream类" class="headerlink" title="FileOutputStream类"></a>FileOutputStream类</h5><p><code>java.io.FileOutputStream</code>类是<code>OutputStream</code>的子类，文件输出流，用于将数据写出到文件。</p>
+<p>构造方法</p>
+<ul>
+<li><p><code>public FileOutputStream(File file)</code>：创建文件输出流以写入由指定的 File对象表示的文件，会清空文件。 </p>
+</li>
+<li><p><code>public FileOutputStream(String name)</code>： 创建文件输出流以指定的名称写入文件，会清空文件。  </p>
+</li>
+<li><p><code>public FileOutputStream(File file, boolean append)</code>： 创建文件输出流以写入由指定的 File对象表示的文件，append传入true表示追加写不会清空文件。  </p>
+</li>
+<li><p><code>public FileOutputStream(String name, boolean append)</code>： 创建文件输出流以指定的名称写入文件，append传入true表示追加写不会清空文件。  </p>
+<p>当你创建一个流对象时，必须传入一个文件路径。该路径下，如果没有这个文件，会创建该文件。如果路径不存在会抛出<code>java.io.FileNotFoundException</code>异常</p>
+</li>
+</ul>
+<p>调用<code>write</code>的不同重载方法可以将数据写入文件</p>
+</li>
+<li><h5 id="写出换行"><a href="#写出换行" class="headerlink" title="写出换行"></a>写出换行</h5><ul>
+<li>回车符<code>\r</code>和换行符<code>\n</code> ：<ul>
+<li>回车符：回到一行的开头（return）。</li>
+<li>换行符：下一行（newline）。</li>
+</ul>
+</li>
+<li>系统中的换行：<ul>
+<li>Windows系统里，每行结尾是 <code>回车+换行</code> ，即<code>\r\n</code>；</li>
+<li>Unix系统里，每行结尾只有 <code>换行</code> ，即<code>\n</code>；</li>
+<li>Mac系统里，每行结尾是 <code>回车</code> ，即<code>\r</code>。从 Mac OS X开始与Linux统一。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h5 id="字节输入流【InputStream】"><a href="#字节输入流【InputStream】" class="headerlink" title="字节输入流【InputStream】"></a>字节输入流【InputStream】</h5><p><code>java.io.InputStream</code>抽象类是表示字节输入流的所有类的超类，可以读取字节信息到内存中。它定义了字节输入流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code> ：关闭此输入流并释放与此流相关联的任何系统资源。    </li>
+<li><code>public abstract int read()</code>： 从输入流读取数据的下一个字节。 </li>
+<li><code>public int read(byte[] b)</code>： 从输入流中读取一些字节数，并将它们存储到字节数组 b中 。</li>
+</ul>
+</li>
+<li><h5 id="FileInputStream类"><a href="#FileInputStream类" class="headerlink" title="FileInputStream类"></a>FileInputStream类</h5><p><code>java.io.FileInputStream</code>类是文件输入流，从文件中读取字节。</p>
+<p>构造方法</p>
+<ul>
+<li><p><code>FileInputStream(File file)</code>： 通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件系统中的 File对象 file命名。 </p>
+</li>
+<li><p><code>FileInputStream(String name)</code>： 通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件系统中的路径名 name命名。  </p>
+<p>当你创建一个流对象时，必须传入一个文件路径。该路径下，如果没有该文件,会抛出<code>FileNotFoundException</code> 。</p>
+</li>
+</ul>
+<p><code>read</code>的重写说明</p>
+<ul>
+<li><p><code>public abstract int read()</code>： 从输入流读取数据的下一个字节,读取到文件末尾，返回<code>-1</code>。 </p>
+</li>
+<li><p><code>public int read(byte[] b)</code>： 从输入流中读取一些字节数，并将它们存储到字节数组 b中 ,返回读取到的有效字节数（数组长度超过剩下字节数时，数组后面的数据不会被替换掉），读取到末尾时，返回<code>-1</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ((b = fis.read())!=-<span class="number">1</span>) &#123;<span class="comment">//int b</span></span><br><span class="line">    System.out.println((<span class="keyword">char</span>)b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (( len= fis.read(b))!=-<span class="number">1</span>) &#123;<span class="comment">//byte[] b = new byte[2];</span></span><br><span class="line">           	<span class="comment">// 每次读取后,把数组的有效字节部分，变成字符串打印</span></span><br><span class="line">            System.out.println(<span class="keyword">new</span> String(b，<span class="number">0</span>，len));<span class="comment">//  len 每次读取的有效字节个数</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><h3 id="字符流"><a href="#字符流" class="headerlink" title="字符流"></a>字符流</h3><p>当使用字节流读取文本文件时，可能会有一个小问题。就是遇到中文字符时，可能不会显示完整的字符，那是因为一个中文字符可能占用多个字节存储。所以Java提供一些字符流类，以字符为单位读写数据，专门用于处理文本文件。</p>
+</li>
+<li><h4 id="字符输入流【Reader】"><a href="#字符输入流【Reader】" class="headerlink" title="字符输入流【Reader】"></a>字符输入流【Reader】</h4><p><code>java.io.Reader</code>抽象类是表示用于读取字符流的所有类的超类，可以读取字符信息到内存中。它定义了字符输入流的基本共性功能方法。</p>
+<ul>
+<li><code>public void close()</code> ：关闭此流并释放与此流相关联的任何系统资源。    </li>
+<li><code>public int read()</code>： 从输入流读取一个字符。 </li>
+<li><code>public int read(char[] cbuf)</code>： 从输入流中读取一些字符，并将它们存储到字符数组 cbuf中 。</li>
+</ul>
+</li>
+<li><h4 id="FileReader类"><a href="#FileReader类" class="headerlink" title="FileReader类"></a>FileReader类</h4><p><code>java.io.FileReader</code>类是读取字符文件的便利类。构造时使用系统默认的字符编码和默认字节缓冲区。</p>
+<p>字符编码：字节与字符的对应规则。Windows系统的中文编码默认是GBK编码表。（idea中UTF-8）</p>
+<p>字节缓冲区：一个字节数组，用来临时存储字节数据。</p>
+<p>构造方法</p>
+<ul>
+<li><code>FileReader(File file)</code>： 创建一个新的 FileReader ，给定要读取的File对象。   </li>
+<li><code>FileReader(String fileName)</code>： 创建一个新的 FileReader ，给定要读取的文件的名称。  </li>
+</ul>
+<p><code>read</code>的重载与FileInputStream相似，可能需要将读取数据强转为char，string才能正常显示。</p>
+</li>
+<li><h4 id="字符输出流【Writer】"><a href="#字符输出流【Writer】" class="headerlink" title="字符输出流【Writer】"></a>字符输出流【Writer】</h4><p><code>java.io.Writer</code>抽象类是表示用于写出字符流的所有类的超类，将指定的字符信息写出到目的地。它定义了字节输出流的基本共性功能方法。</p>
+<ul>
+<li><code>void write(int c)</code> 写入单个字符。</li>
+<li><code>void write(char[] cbuf)</code>写入字符数组。 </li>
+<li><code>abstract  void write(char[] cbuf, int off, int len)</code>写入字符数组的某一部分,off数组的开始索引,len写的字符个数。 </li>
+<li><code>void write(String str)</code>写入字符串。 </li>
+<li><code>void write(String str, int off, int len)</code> 写入字符串的某一部分,off字符串的开始索引,len写的字符个数。</li>
+<li><code>void flush()</code>刷新该流的缓冲。  </li>
+<li><code>void close()</code> 关闭此流，但要先刷新它。 </li>
+</ul>
+</li>
+<li><h4 id="FileWriter类"><a href="#FileWriter类" class="headerlink" title="FileWriter类"></a>FileWriter类</h4><p><code>java.io.FileWriter</code>类是写出字符到文件的便利类。构造时使用系统默认的字符编码和默认字节缓冲区。</p>
+<p>构造方法</p>
+<ul>
+<li><code>FileWriter(File file)</code>： 创建一个新的 FileWriter，给定要读取的File对象。   </li>
+<li><code>FileWriter(String fileName)</code>： 创建一个新的 FileWriter，给定要读取的文件的名称。  </li>
+</ul>
+<p>当你创建一个流对象时，必须传入一个文件路径，类似于FileOutputStream。</p>
+<p>续写和换行类似于<code>FileOutputStream</code></p>
+</li>
+<li><h4 id="关闭和刷新"><a href="#关闭和刷新" class="headerlink" title="关闭和刷新"></a>关闭和刷新</h4><p>因为内置缓冲区的原因，如果不关闭输出流，无法写出字符到文件中。但是关闭的流对象，是无法继续写出数据的。如果我们既想写出数据，又想继续使用流，就需要<code>flush</code> 方法了。</p>
+<ul>
+<li><code>flush</code> ：刷新缓冲区，流对象可以继续使用。</li>
+<li><code>close</code>:先刷新缓冲区，然后通知系统释放资源。流对象不可以再被使用了。</li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/07/springmvc/" class="archive-article-date">
-  	<time datetime="2019-08-07T12:32:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/07/springmvc/">SpringMVC</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/02/io流/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/05/Spring事务管理/" class="archive-article-date">
-  	<time datetime="2019-08-05T13:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/02/io/day10【缓冲流、转换流、序列化流、打印流】/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/05/Spring事务管理/">Spring事务控制</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/03/srping-AOP/" class="archive-article-date">
-  	<time datetime="2019-08-03T06:58:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/03/srping-AOP/">srping-AOP</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/02/使用代理对象增强方法/" class="archive-article-date">
-  	<time datetime="2019-08-02T14:10:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/02/使用代理对象增强方法/">使用动态代理增强方法</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/01/Spring-ioc容器解耦/" class="archive-article-date">
-  	<time datetime="2019-08-01T11:54:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/01/Spring-ioc容器解耦/">Spring-ioc容器解耦</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis-三/" class="archive-article-date">
-  	<time datetime="2019-07-27T08:44:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis-三/">Mybatis(三)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/Mybatis二/" class="archive-article-date">
-  	<time datetime="2019-07-27T03:52:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/Mybatis二/">Mybatis(二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/Mybatis/" class="archive-article-date">
-  	<time datetime="2019-07-26T12:12:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/Mybatis/">Mybatis基本使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/JDBC连接池JDBCTemplate/" class="archive-article-date">
-  	<time datetime="2019-07-26T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/JDBC连接池JDBCTemplate/">JDBC连接池和JDBCTemplate</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/23/多表和事务/" class="archive-article-date">
-  	<time datetime="2019-07-23T03:40:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/23/多表和事务/">多表和事务</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2019/page/3/">3</a><a class="page-number" href="/archives/2019/page/4/">4</a><a class="extend next" rel="next" href="/archives/2019/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -460,8 +495,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
