@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | Hexo</title>
+  <title>i/o流(二) | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/3/index.html">
+  <meta name="description" content="缓冲流、转换流、序列化流、打印流">
+<meta property="og:type" content="article">
+<meta property="og:title" content="i&#x2F;o流(二)">
+<meta property="og:url" content="http://yoursite.com/2019/09/03/i-o流-二/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="缓冲流、转换流、序列化流、打印流">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-03T14:59:02.843Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="i&#x2F;o流(二)">
+<meta name="twitter:description" content="缓冲流、转换流、序列化流、打印流">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -148,295 +152,243 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-i-o流-二" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      i/o流(二)
+    </h1>
+  
+
+        
+        <a href="/2019/09/03/i-o流-二/" class="archive-article-date">
+  	<time datetime="2019-09-03T08:12:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-03</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>缓冲流、转换流、序列化流、打印流</p>
+<a id="more"></a>
+
+<ul>
+<li><h3 id="缓冲流"><a href="#缓冲流" class="headerlink" title="缓冲流"></a>缓冲流</h3><p>缓冲流,也叫高效流，是对4个基本的<code>FileXxx</code> 流的增强，所以也是4个流，按照数据类型分类：</p>
+<ul>
+<li><strong>字节缓冲流</strong>：<code>BufferedInputStream</code>，<code>BufferedOutputStream</code> </li>
+<li><strong>字符缓冲流</strong>：<code>BufferedReader</code>，<code>BufferedWriter</code></li>
+</ul>
+<p>缓冲流的基本原理，是在创建流对象时，会创建一个内置的默认大小的缓冲区数组，通过缓冲区读写，减少系统IO次数，从而提高读写的效率。</p>
+</li>
+<li><h4 id="字节缓冲流"><a href="#字节缓冲流" class="headerlink" title="字节缓冲流"></a>字节缓冲流</h4><h5 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>public BufferedInputStream(InputStream in)</code> ：创建一个 新的缓冲输入流。 </li>
+<li><code>public BufferedOutputStream(OutputStream out)</code>： 创建一个新的缓冲输出流。</li>
+</ul>
+<p>常用方法于用法于基本字节流一致，使用数组进行读取比单个字节读取速度更快</p>
+</li>
+<li><h4 id="字符缓冲流"><a href="#字符缓冲流" class="headerlink" title="字符缓冲流"></a>字符缓冲流</h4><h5 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>public BufferedReader(Reader in)</code> ：创建一个 新的缓冲输入流。 </li>
+<li><code>public BufferedWriter(Writer out)</code>： 创建一个新的缓冲输出流。</li>
+</ul>
+<p>常用方法于用法于基本字节流一至</p>
+<h5 id="特有方法"><a href="#特有方法" class="headerlink" title="特有方法"></a>特有方法</h5><ul>
+<li>BufferedReader：<code>public String readLine()</code>: 读一行文字。 </li>
+<li>BufferedWriter：<code>public void newLine()</code>: 写一行行分隔符,由系统属性定义符号。 </li>
+</ul>
+</li>
+<li><h3 id="转换流"><a href="#转换流" class="headerlink" title="转换流"></a>转换流</h3><p>在IDEA中，使用<code>FileReader</code> 读取项目中的文本文件。由于IDEA的设置，都是默认的<code>UTF-8</code>编码，所以没有任何问题。但是，当读取Windows系统中创建的文本文件时，由于Windows系统的默认是GBK编码，就会出现乱码。</p>
+</li>
+<li><h4 id="InputStreamReader类"><a href="#InputStreamReader类" class="headerlink" title="InputStreamReader类"></a>InputStreamReader类</h4><p>转换流<code>java.io.InputStreamReader</code>，是Reader的子类，是从字节流到字符流的桥梁。它读取字节，并使用指定的字符集将其解码为字符。它的字符集可以由名称指定，也可以接受平台的默认字符集。 用于解决编译器与操作系统编码不匹配造成的乱码问题。</p>
+<h5 id="构造方法-2"><a href="#构造方法-2" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>InputStreamReader(InputStream in)</code>: 创建一个使用默认字符集的字符流。 </li>
+<li><code>InputStreamReader(InputStream in, String charsetName)</code>: 创建一个指定字符集的字符流。</li>
+</ul>
+</li>
+<li><h4 id="OutputStreamWriter类"><a href="#OutputStreamWriter类" class="headerlink" title="OutputStreamWriter类"></a>OutputStreamWriter类</h4><p>转换流<code>java.io.OutputStreamWriter</code> ，是Writer的子类，是从字符流到字节流的桥梁。使用指定的字符集将字符编码为字节。它的字符集可以由名称指定，也可以接受平台的默认字符集。 </p>
+<h5 id="构造方法-3"><a href="#构造方法-3" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>OutputStreamWriter(OutputStream in)</code>: 创建一个使用默认字符集的字符流。 </li>
+<li><code>OutputStreamWriter(OutputStream in, String charsetName)</code>: 创建一个指定字符集的字符流。</li>
+</ul>
+</li>
+<li><h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>Java 提供了一种对象<strong>序列化</strong>的机制。用一个字节序列可以表示一个对象，该字节序列包含该<code>对象的数据</code>、<code>对象的类型</code>和<code>对象中存储的属性</code>等信息。字节序列写出到文件之后，相当于文件中<strong>持久保存</strong>了一个对象的信息。 </p>
+<p>反之，该字节序列还可以从文件中读取回来，重构对象，对它进行<strong>反序列化</strong>。<code>对象的数据</code>、<code>对象的类型</code>和<code>对象中存储的数据</code>信息，都可以用来在内存中创建对象。</p>
+</li>
+<li><h4 id="ObjectOutputStream类"><a href="#ObjectOutputStream类" class="headerlink" title="ObjectOutputStream类"></a>ObjectOutputStream类</h4><p><code>java.io.ObjectOutputStream</code> 类，将Java对象的原始数据类型写出到文件,实现对象的持久存储。</p>
+<h5 id="构造方法-4"><a href="#构造方法-4" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>public ObjectOutputStream(OutputStream out)</code>： 创建一个指定OutputStream的ObjectOutputStream。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">FileOutputStream fileOut = <span class="keyword">new</span> FileOutputStream(<span class="string">"test.txt"</span>);</span><br><span class="line">ObjectOutputStream out = <span class="keyword">new</span> ObjectOutputStream(fileOut);</span><br></pre></td></tr></table></figure>
+
+<h5 id="序列化操作"><a href="#序列化操作" class="headerlink" title="序列化操作"></a>序列化操作</h5><ol>
+<li>一个对象要想序列化，必须满足两个条件:<ul>
+<li>该类必须实现<code>java.io.Serializable</code> 接口，<code>Serializable</code> 是一个标记接口，不实现此接口的类将不会使任何状态序列化或反序列化，会抛出<code>NotSerializableException</code> 。</li>
+<li>该类的所有属性必须是可序列化的。如果有一个属性不需要可序列化的，则该属性必须注明是瞬态的，使用<code>transient</code> 关键字修饰。</li>
+</ul>
+</li>
+<li>写出对象方法<ul>
+<li><code>public final void writeObject (Object obj)</code> : 将指定的对象写出。</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><h4 id="ObjectInputStream类"><a href="#ObjectInputStream类" class="headerlink" title="ObjectInputStream类"></a>ObjectInputStream类</h4><p>ObjectInputStream反序列化流，将之前使用ObjectOutputStream序列化的原始数据恢复为对象。 </p>
+<h5 id="构造方法-5"><a href="#构造方法-5" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>public ObjectInputStream(InputStream in)</code>： 创建一个指定InputStream的ObjectInputStream。</li>
+</ul>
+<h5 id="反序列化操作"><a href="#反序列化操作" class="headerlink" title="反序列化操作"></a>反序列化操作</h5><p>​    如果能找到一个对象的class文件，我们可以进行反序列化操作，调用<code>ObjectInputStream</code>读取对象的方法：</p>
+<p><code>public final Object readObject ()</code> : 读取一个对象。</p>
+<p><strong>对于JVM可以反序列化对象，它必须是能够找到class文件的类。如果找不到该类的class文件，则抛出一个 <code>ClassNotFoundException</code> 异常。</strong>  </p>
+<p><strong>当JVM反序列化对象时，能找到class文件，但是class文件在序列化对象之后发生了修改，那么反序列化操作也会失败，抛出一个<code>InvalidClassException</code>异常。</strong>发生这个异常的原因如下：</p>
+<ul>
+<li>该类的序列版本号与从流中读取的类描述符的版本号不匹配 </li>
+<li>该类包含未知数据类型 </li>
+<li>该类没有可访问的无参数构造方法 </li>
+</ul>
+<p><code>Serializable</code> 接口给需要序列化的类，提供了一个序列版本号。<code>serialVersionUID</code> 该版本号的目的在于验证序列化的对象和对应类是否版本匹配。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"><span class="comment">//不填写版本号默认版本号为 4846312122733796416</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><h4 id="Properties类"><a href="#Properties类" class="headerlink" title="Properties类"></a>Properties类</h4><p><code>java.util.Properties</code> 继承于<code>Hashtable</code> ，来表示一个持久的属性集。它使用键值结构存储数据，<strong>每个键及其对应值都是一个字符串</strong>。该类也被许多Java类使用，比如获取系统属性时，<code>System.getProperties</code> 方法就是返回一个<code>Properties</code>对象。</p>
+<h5 id="构造方法-6"><a href="#构造方法-6" class="headerlink" title="构造方法"></a>构造方法</h5><ul>
+<li><code>public Properties()</code> :创建一个空的属性列表。</li>
+</ul>
+<h5 id="基本的存储方法"><a href="#基本的存储方法" class="headerlink" title="基本的存储方法"></a>基本的存储方法</h5><ul>
+<li><code>public Object setProperty(String key, String value)</code> ： 保存一对属性。  </li>
+<li><code>public String getProperty(String key)</code> ：使用此属性列表中指定的键搜索属性值。</li>
+<li><code>public Set&lt;String&gt; stringPropertyNames()</code> ：所有键的名称的集合。</li>
+</ul>
+<h5 id="与流有关的方法"><a href="#与流有关的方法" class="headerlink" title="与流有关的方法"></a>与流有关的方法</h5><ul>
+<li><code>public void load(InputStream inStream)</code>： 从字节输入流中读取键值对。 </li>
+</ul>
+<p>参数中使用了字节输入流，通过流对象，可以关联到某文件上，这样就能够加载文本中的数据了。文本数据格式:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filename=a.txt</span><br><span class="line">length=209385038</span><br><span class="line">location=D:\a.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建属性集对象</span></span><br><span class="line">Properties pro = <span class="keyword">new</span> Properties();</span><br><span class="line"><span class="comment">// 加载文本中信息到属性集</span></span><br><span class="line">pro.load(<span class="keyword">new</span> FileInputStream(<span class="string">"read.txt"</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><h3 id="打印流"><a href="#打印流" class="headerlink" title="打印流"></a>打印流</h3><p>平时控制台打印输出，是调用<code>print</code>方法和<code>println</code>方法完成的，这两个方法都来自于<code>java.io.PrintStream</code>类，该类能够方便地打印各种数据类型的值，是一种便捷的输出方式。</p>
+</li>
+<li><h4 id="PrintStream类"><a href="#PrintStream类" class="headerlink" title="PrintStream类"></a>PrintStream类</h4><h5 id="构造方法-7"><a href="#构造方法-7" class="headerlink" title="构造方法"></a>构造方法</h5><p><code>public PrintStream(String fileName)</code>： 使用指定的文件名创建一个新的打印流。</p>
+<h5 id="改变打印流方向"><a href="#改变打印流方向" class="headerlink" title="改变打印流方向"></a>改变打印流方向</h5><p><code>System.out</code>就是<code>PrintStream</code>类型的，只不过它的流向是系统规定的，打印在控制台上。可以改变流的方向使其打印到其他地方如文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">		<span class="comment">// 调用系统的打印流,控制台直接输出97</span></span><br><span class="line">        System.out.println(<span class="number">97</span>);</span><br><span class="line">      </span><br><span class="line">		<span class="comment">// 创建打印流,指定文件的名称</span></span><br><span class="line">        PrintStream ps = <span class="keyword">new</span> PrintStream(<span class="string">"ps.txt"</span>);</span><br><span class="line">      	</span><br><span class="line">      	<span class="comment">// 设置系统的打印流流向,输出到ps.txt</span></span><br><span class="line">        System.setOut(ps);</span><br><span class="line">      	<span class="comment">// 调用系统的打印流,ps.txt中输出97</span></span><br><span class="line">        System.out.println(<span class="number">97</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/16/Ajax/" class="archive-article-date">
-  	<time datetime="2019-07-16T13:20:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/16/Ajax/">Ajax</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/03/i-o流-二/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/14/EL与JSTL/" class="archive-article-date">
-  	<time datetime="2019-07-14T13:35:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-14</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/02/io流/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">io流</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/14/EL与JSTL/">EL与JSTL</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/07/Servlet/" class="archive-article-date">
-  	<time datetime="2019-07-07T08:23:05.039Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/07/Servlet/">Servlet</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/06/数据库存储大文本与文件/" class="archive-article-date">
-  	<time datetime="2019-07-06T14:49:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/06/数据库存储大文本与文件/">数据库存储大文本与文件</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/03/JDBC学习笔记/" class="archive-article-date">
-  	<time datetime="2019-07-03T07:52:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/03/JDBC学习笔记/">JDBC基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/01/jsp九大内置对象/" class="archive-article-date">
-  	<time datetime="2019-07-01T14:43:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/01/jsp九大内置对象/">jsp九大内置对象</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/30/虚拟主机/" class="archive-article-date">
-  	<time datetime="2019-06-30T14:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/30/虚拟主机/">虚拟主机</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/30/虚拟路径/" class="archive-article-date">
-  	<time datetime="2019-06-30T14:11:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/30/虚拟路径/">虚拟路径</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/30/常见状态码/" class="archive-article-date">
-  	<time datetime="2019-06-30T14:06:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/30/常见状态码/">常见状态码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/30/Tomcat/" class="archive-article-date">
-  	<time datetime="2019-06-30T13:56:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/30/Tomcat/">Tomcat</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2019/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/2019/">1</a><a class="page-number" href="/archives/2019/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
   
 
 
@@ -460,8 +412,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
