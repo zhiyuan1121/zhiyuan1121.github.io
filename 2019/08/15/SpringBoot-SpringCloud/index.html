@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="微服务">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-16T08:04:30.141Z">
+<meta property="og:updated_time" content="2019-09-10T04:59:00.985Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot+SpringCloud">
 <meta name="twitter:description" content="微服务">
@@ -179,6 +179,11 @@
 <pre><code>它并不是什么新的框架，而是默认配置了很多框架的使用方式，就像 Maven 整合了所有的 jar 包一样，Spring Boot 整合了所有框架</code></pre><p>在SSM显目中，搭建的过程是比较繁琐，需要写多个配置文件来将不同的框架进行整合，而使用Spring Boot来开发显目则只需要非常少的几个配置就可以搭建起来一个 Web 项目，并且利用 IDEA 可以自动生成生成。</p>
 <p>简单、快速、方便地搭建项目；对主流开发框架的无配置集成；极大提高了开发、部署效率。</p>
 <p>使用IDea:file-new -project-Spring Initializr-<a href="https://start.spring.io/" target="_blank" rel="noopener">https://start.spring.io/</a></p>
+<p>整合jsp需要导入坐标</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.tomcat.embed<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tomcat-embed-jasper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#访问相关配置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">  tomcat:</span></span><br><span class="line"><span class="attr">    uri-encoding:</span> <span class="string">UTF-8</span></span><br><span class="line"><span class="comment">#  servlet:</span></span><br><span class="line"><span class="comment">#    context-path: /springBoot_dem</span></span><br><span class="line"><span class="comment">#项目访问名称，如果不配置直接访问bean就可以</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Spring boot视图配置</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  mvc:</span></span><br><span class="line"><span class="attr">    view:</span></span><br><span class="line"><span class="attr">      prefix:</span> <span class="string">/WEB-INF/</span></span><br><span class="line"><span class="attr">      suffix:</span> <span class="string">.jsp</span></span><br><span class="line">    <span class="comment">#静态文件访问配置</span></span><br><span class="line"><span class="comment">#    static-path-pattern: /static/**</span></span><br></pre></td></tr></table></figure>
+
 <h5 id="项目结构默认生成："><a href="#项目结构默认生成：" class="headerlink" title="项目结构默认生成："></a>项目结构默认生成：</h5><ul>
 <li>SpringbootApplication： 一个带有 main() 方法的类，用于启动应用程序</li>
 <li>SpringbootApplicationTests：一个空的 Junit 测试了，它加载了一个使用 Spring Boot 字典配置功能的 Spring 应用程序上下文</li>
